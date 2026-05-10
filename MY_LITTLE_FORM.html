@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Little Form</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:white;
+    color:black;
+    overflow-x:hidden;
+  }
+
+  html{
+    scroll-behavior:smooth;
+  }
+
+  .title-font{
+    font-family:'Patrick Hand',cursive;
+  }
+
+  /* NAVBAR */
+  nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    border-bottom:1px solid #eee;
+    z-index:1000;
+    gap:20px;
+  }
+
+  .nav-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .nav-left img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+  }
+
+  .nav-left span{
+    font-family:'Patrick Hand',cursive;
+    font-size:22px;
+  }
+
+  .nav-links{
+    display:flex;
+    gap:20px;
+  }
+
+  .nav-links a{
+    text-decoration:none;
+    color:black;
+    font-weight:500;
+    transition:0.3s;
+  }
+
+  .nav-links a:hover{
+    opacity:0.6;
+  }
+
+  /* PUSH CONTENT BELOW NAV */
+  body{
+    padding-top:80px;
+  }
+
+  /* HERO */
+  section{
+    padding:80px 20px;
+  }
+
+  .container{
+    max-width:1200px;
+    margin:auto;
+  }
+
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(to bottom, white, #f3f3f3);
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:30px;
+    max-width:1200px;
+    margin:auto;
+    text-align:left;
+  }
+
+    .hero-image img{
+    width:100%;
+    border-radius:25px;
+    object-fit:cover;
+  }
+
+   .hero-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+
+  /* mobile fallback */
+  @media(max-width:768px){
+    .hero-grid{
+      grid-template-columns:1fr;
+      text-align:center;
+    }
+
+    .hero-image img{
+      margin:auto;
+    }
+  }
+
+  .hero h1{
+    font-size:90px;
+    margin-top:20px;
+  }
+
+  .tagline{
+    color:#666;
+    font-size:24px;
+    margin-top:10px;
+  }
+
+  .description{
+    max-width:800px;
+    margin-top:25px;
+    line-height:1.8;
+    color:#666;
+    font-size:18px;
+  }
+
+  .btn-group{
+    display:flex;
+    gap:15px;
+    margin-top:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .btn{
+    padding:14px 30px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:0.3s;
+    font-weight:500;
+  }
+
+  .btn-black{
+    background:black;
+    color:white;
+  }
+
+  .btn-white{
+    border:1px solid black;
+    color:black;
+  }
+
+  .btn:hover{
+    transform:scale(1.05);
+  }
+
+  .section-title{
+    text-align:center;
+    font-size:65px;
+    margin-bottom:20px;
+  }
+
+  .section-subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:50px;
+    font-size:18px;
+  }
+
+  .grid-2{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    align-items:center;
+  }
+
+  .card{
+    background:#f5f5f5;
+    padding:30px;
+    border-radius:35px;
+    transition:0.3s;
+  }
+
+  .card:hover{
+    transform:translateY(-5px);
+  }
+
+  .card img{
+    width:100%;
+    border-radius:25px;
+    margin-bottom:20px;
+    object-fit:cover;
+  }
+
+  .card h3{
+    font-size:40px;
+    margin-bottom:15px;
+  }
+
+  .card p{
+    line-height:1.8;
+    color:#666;
+  }
+
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:15px;
+    justify-items:center;
+    align-items:center;
+    max-width:1000px;
+    margin:auto;
+  }
+
+  @media(max-width:900px){
+    .gallery{
+      grid-template-columns:repeat(2, 1fr);
+    }
+  }
+
+  @media(max-width:600px){
+    .gallery{
+      grid-template-columns:1fr;
+    }
+  }
+
+  .gallery img{
+    width:100%;
+    height:auto;
+    max-width:320px;
+    border-radius:25px;
+    cursor:pointer;
+    transition:0.3s;
+    background:#ddd;
+  }
+
+  .gallery img:hover{
+    transform:scale(1.05);
+  }
+
+  .black-section{
+    background:black;
+    color:white;
+  }
+
+  .step{
+    background:rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:30px;
+    margin-bottom:20px;
+    line-height:1.8;
+  }
+
+  .step h3{
+    margin-bottom:10px;
+    font-size:28px;
+  }
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+  }
+
+  .contact-card{
+    background:#f5f5f5;
+    padding:30px;
+    border-radius:30px;
+    text-align:center;
+    text-decoration:none;
+    color:black;
+    transition:0.3s;
+  }
+
+  .contact-card:hover{
+    background:black;
+    color:white;
+  }
+
+  .icon{
+    font-size:50px;
+    margin-bottom:15px;
+  }
+
+  footer{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:30px;
+  }
+
+  .lightbox{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+  }
+
+  .lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:20px;
+  }
+
+  .lightbox.active{
+    display:flex;
+  }
+
+  @media(max-width:768px){
+
+    .hero h1{
+      font-size:60px;
+    }
+
+    .section-title{
+      font-size:48px;
+    }
+
+    nav{
+      flex-direction:column;
+      gap:10px;
+    }
+
+  }
+  .shipping-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:25px;
+    margin-top:30px;
+  }
+
+  .shipping-card{
+    background:white;
+    padding:20px;
+    border-radius:25px;
+    text-align:center;
+  }
+
+  .shipping-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:20px;
+    margin-bottom:15px;
+  }
+
+  /* mobile fallback */
+  @media(max-width:900px){
+    .shipping-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  .order-btn{
+    background:black;
+    color:white;
+    padding:10px 18px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:500;
+    margin-right:15px;
+    transition:0.3s;
+  }
+
+  .order-btn:hover{
+    opacity:0.8;
+    transform:scale(1.05);
+  }
+
+  .nav-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,0.2);
+    border:none;
+    color:white;
+    font-size:40px;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:10px;
+  }
+
+  .left{
+    left:20px;
+  }
+
+  .right{
+    right:20px;
+  }
+
+  .contact-icon{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    margin-bottom:15px;
+  }
+
+  /* DARK MODE */
+
+  .dark-mode{
+    background:#111;
+    color:white;
+  }
+
+  .dark-mode nav{
+    background:#111;
+    border-bottom:1px solid #333;
+  }
+
+  .dark-mode .nav-links a{
+    color:white;
+  }
+
+  .dark-mode .card,
+  .dark-mode .contact-card,
+  .dark-mode .shipping-card{
+    background:#1e1e1e;
+    color:white;
+  }
+
+  .dark-mode .card p,
+  .dark-mode .section-subtitle,
+  .dark-mode .description,
+  .dark-mode p{
+    color:#ccc;
+  }
+
+  .dark-mode .hero{
+    background:linear-gradient(to bottom, #111, #1b1b1b);
+  }
+
+  .dark-mode footer{
+    background:#000;
+  }
+
+  .dark-mode .btn-white{
+    border:1px solid white;
+    color:white;
+  }
+
+  .dark-mode #products,
+  .dark-mode #shipping{
+    background:#181818 !important;
+  }
+
+  .nav-buttons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .contact-card:hover{
+    background:black;
+    color:white;
+  }
+
+  .dark-mode .contact-card:hover{
+    background:white;
+    color:black;
+  }
+
+  /* FAQS */
+
+  .faq-container{
+    max-width:900px;
+    margin:auto;
+  }
+
+  .faq-item{
+    background:#f5f5f5;
+    border-radius:25px;
+    margin-bottom:15px;
+    overflow:hidden;
+    transition:0.3s;
+  }
+
+  .faq-question{
+    width:100%;
+    background:none;
+    border:none;
+    outline:none;
+    padding:25px;
+    text-align:left;
+    font-size:20px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+    padding:0 25px;
+    line-height:1.8;
+    color:#666;
+  }
+
+  .faq-item.active .faq-answer{
+    max-height:500px;
+    padding-bottom:25px;
+  }
+
+  .faq-question span{
+    font-size:28px;
+  }
+
+  /* DARK MODE FAQ */
+
+  .dark-mode .faq-item{
+    background:#1e1e1e;
+  }
+
+  .dark-mode .faq-answer{
+    color:#ccc;
+  }
+
+  .dark-mode .faq-question{
+    color:white;
+  }
+
+  </style>
+
+  </head>
+
+  <body>
+
+  <!-- NAVBAR -->
+  <nav>
+
+    <div class="nav-left">
+      <img id="logo-mark" src="My Little Form LOGO MARK.png">
+      <span>My Little Form</span>
+    </div>
+
+    <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#About">About Us</a>
+    <a href="#products">Products</a>
+    <a href="#price">Price</a>
+    <a href="#preorder">Pre-Order</a>
+    <a href="#shipping">Shipping Note</a>
+    <a href="#faqs">FAQs</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="nav-buttons">
+
+    <button id="darkToggle" class="order-btn">
+      🌙
+    </button>
+
+    <a href="https://www.facebook.com/people/My-Little-Form/61587764145878/" class="order-btn">
+      Order Now
+    </a>
+
+  </div>
+
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-grid">
+
+      <!-- LEFT IMAGE -->
+      <div class="hero-image">
+        <img src="MLF_POSTER.jpg" alt="My Little Form">
+      </div>
+
+      <!-- RIGHT TEXT -->
+      <div class="hero-text">
+
+        <h1 class="title-font">Every Little Form Tells a Story</h1>
+        
+        <p class="description">
+          Personalized clay figures sculpted with care and designed to turn your memories into handmade keepsakes.
+        </p>
+
+        <div class="btn-group">
+          <a href="#products" class="btn btn-black">View Products</a>
+          <a href="#preorder" class="btn btn-white">Pre-Order Now</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="About">
+
+    <div class="container">
+
+      <h2 class="section-title title-font">About Us</h2>
+
+      <div class="grid-2">
+
+        <div>
+
+          <p style="line-height:1.9; color:#666; font-size:18px;">
+
+            My Little Form started in January 2026 with the goal of creating handmade personalized keepsakes that capture meaningful memories through clay art.
+
+            <br><br>
+
+            Every product is carefully sculpted and crafted to reflect the personality, story, and emotion behind each order.
+
+            <br><br>
+
+            Aside from personalized clay figures, we also introduced My Little Charm, a personalized clay keychain collection designed for people who want smaller but meaningful handmade pieces they can bring anywhere.
+
+          </p>
+
+        </div>
+
+        <div class="grid-2">
+
+          <img 
+            src="MLF_ABOUT_US.jpg"
+            style="
+              width:100%;
+              border-radius:25px;
+              transition:0.4s;
+            "
+            onmouseover="
+              this.src='MLF_ABOUT_US_C.png';
+              this.style.transform='scale(1.05)';
+            "
+            onmouseout="
+              this.src='MLF_ABOUT_US.jpg';
+              this.style.transform='scale(1)';
+            "
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS -->
+
+  <section id="products" style="background:#f3f3f3;">
+
+    <div class="container">
+
+      <h2 class="section-title title-font">Our Products</h2>
+
+      <p class="section-subtitle">
+        Handmade personalized creations made with air dry clay.
+      </p>
+
+      <div class="grid-2">
+
+        <div class="card">
+
+          <img src="PRODUCT_1.png">
+
+          <h3 class="title-font">Personalized Figures</h3>
+
+          <p>
+            Customized clay figures inspired by your photos, memories, favorite people, or special moments.
+          </p>
+
+        </div>
+
+        <div class="card">
+
+          <img src="PRODUCT_2.png">
+
+          <h3 class="title-font">My Little Charm</h3>
+
+          <p>
+            Personalized clay charms and keychains designed to become small keepsakes you can carry every day.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRICE LIST -->
+
+  <section id="price">
+
+    <div class="container">
+
+      <h2 class="section-title title-font">
+        Price List
+      </h2>
+
+      <p class="section-subtitle">
+        Click any image to enlarge.
+      </p>
+
+      <div class="gallery">
+
+        <img src="PRICE_LIST_1.png"
+        onclick="openImage(this.src)">
+
+        <img src="PRICE_LIST_2.png"
+        onclick="openImage(this.src)">
+
+        <img src="PRICE_LIST_3.png"
+        onclick="openImage(this.src)">
+
+        <img src="PRICE_LIST_4.png"
+        onclick="openImage(this.src)">
+
+        <img src="PRICE_LIST_5.png"
+        onclick="openImage(this.src)">
+
+        <img src="PRICE_LIST_6.png"
+        onclick="openImage(this.src)">
+
+      </div>
+
+    </div>
+
+  <p style="text-align:center; margin-top:20px; color:#666; font-size:16px; line-height:1.6;">
+  Prices may increase depending on the level of detail requested. More detailed designs may have additional charges.
+  </p>
+
+  </section>
+
+  <!-- PRE ORDER -->
+
+  <section id="preorder" class="black-section">
+
+    <div class="container">
+
+      <h2 class="section-title title-font">How To Pre-Order?</h2>
+
+      <div class="step">
+        <h3>1. Message Us</h3>
+        Message us on Facebook, TikTok, or Instagram.
+      </div>
+
+      <div class="step">
+        <h3>2. Send Your Reference Photo</h3>
+        Send your reference or inspiration photo and we will provide the price for your personalized figure.
+      </div>
+
+      <div class="step">
+        <h3>3. Pay 50% Downpayment</h3>
+        This will reserve your slot and schedule the starting day of the sculpting process. Please note that the reserved slot is for the starting/working day of the sculpting process, not the ship-out date.
+      </div>
+
+      <div class="step">
+        <h3>4. Wait for Your Scheduled Sculpting Day</h3>
+        Usually takes 5–7 working days. We will send updates during the process.
+      </div>
+
+      <div class="step">
+        <h3>5. Order Completed</h3>
+        Pay remaining balance + shipping fee.
+      </div>
+
+      <div class="step">
+        <h3>6. Shipment & Delivery</h3>
+        Your figure will be shipped to you.
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SHIPPING -->
+
+  <section id="shipping" style="background:#f3f3f3;">
+
+    <div class="container">
+
+      <h2 class="section-title title-font">Shipping Note</h2>
+
+      <p class="section-subtitle">
+        Important information about shipping and delivery.
+      </p>
+
+      <div class="shipping-grid">
+
+        <div class="shipping-card">
+          <img src="SHIP_1.png" onclick="openImage(this.src)">
+          <p>Shipping fee is shouldered by the customer.</p>
+        </div>
+
+        <div class="shipping-card">
+          <img src="SHIP_2.png" onclick="openImage(this.src)">
+          <p>Shipping cost depends on location and distance.</p>
+        </div>
+
+        <div class="shipping-card">
+          <img src="SHIP_3.png" onclick="openImage(this.src)">
+          <p>Final shipping fee will be advised day before shipment.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FAQS -->
+
+  <section id="faqs">
+
+    <div class="container">
+
+      <h2 class="section-title title-font">
+        Frequently Asked Questions
+      </h2>
+
+      <div class="faq-container">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            1. What is My Little Form?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              My Little Form creates personalized figures and charms based on your chosen design, reference photo, or idea. Each item is handmade and customized according to your request.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            2. What products do you offer?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              • Personalized figures <br>
+              • Graduation figure <br>
+              • Couple figures <br>
+              • Idol/Star/Artist figures <br>
+              • Keychain charms
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            3. How do I place an order?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              You can message us through our social media accounts and send your reference photo, preferred design, and quantity of order. We will provide the quotation and estimated completion time.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            4. Do you require a downpayment?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              Yes. We require a 50% downpayment to confirm and reserve your slot.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            5. How long does production take?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              Production usually takes around 5–7 days depending on the order complexity, queue, and material availability.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            6. Do you ship internationally?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              Yes. We mainly accept orders from China, Hong Kong, Indonesia, Malaysia, Singapore, and Thailand.
+              <br><br>
+              If your country is not listed, feel free to message us so we can check shipping availability for your location.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            7. Can I cancel my order?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              Orders cannot be cancelled once production has started because all items are personalized and handmade.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            8. Do you offer refunds or returns?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              Refunds and returns are generally not accepted unless the wrong item was sent or there is a major issue with the order.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            9. What payment methods do you accept?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              We usually accept GCash, Wise, PalawanPay, and Cash.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            10. Can I order in bulk?
+            <span>+</span>
+          </button>
+
+          <div class="faq-answer">
+            <p>
+              Yes. We accept bulk and souvenir orders for birthdays, weddings, anniversaries, corporate giveaways, and special events.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <h2 class="section-title title-font">Contact Us</h2>
+
+      <p class="section-subtitle">
+        Location: Calamba City Laguna, Philippines
+      </p>
+
+      <div class="contact-grid">
+
+      <a class="contact-card" target="_blank"
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=mylittleform@gmail.com">
+
+        <img src="GMAIL_ICON.png" class="contact-icon">
+
+        <h3 class="title-font">Email</h3>
+
+        <p>mylittleform@gmail.com</p>
+
+      </a>
+
+      <a class="contact-card" target="_blank"
+      href="https://www.facebook.com/people/My-Little-Form/61587764145878/">
+
+        <img src="FB_ICON.png" class="contact-icon">
+
+        <h3 class="title-font">Facebook</h3>
+
+        <p>My Little Form</p>
+
+      </a>
+
+      <a class="contact-card" target="_blank"
+      href="https://www.tiktok.com/@my.little.form?_r=1&_t=ZS-96BPC27JnwP">
+
+        <img src="TIKTOK_ICON.png" class="contact-icon">
+
+        <h3 class="title-font">TikTok</h3>
+
+        <p>@my.little.form</p>
+
+      </a>
+
+      <a class="contact-card" target="_blank"
+      href="https://www.instagram.com/mylittleform">
+
+        <img src="IG_ICON.png" class="contact-icon">
+
+        <h3 class="title-font">Instagram</h3>
+
+        <p>@mylittleform</p>
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 My Little Form — Every Little Form Tells a Story.
+  </footer>
+
+  <!-- LIGHTBOX -->
+
+  <div class="lightbox" id="lightbox" onclick="closeImage()">
+
+    <button class="nav-btn left" onclick="event.stopPropagation(); changeImage(-1)">❮</button>
+
+    <img id="lightbox-img">
+
+    <button class="nav-btn right" onclick="event.stopPropagation(); changeImage(1)">❯</button>
+
+  </div>
+
+  <script>
+
+  let images = [];
+  let currentIndex = 0;
+
+  window.onload = () => {
+    images = Array.from(document.querySelectorAll(".gallery img"))
+      .map(img => img.src);
+  };
+
+  function openImage(src){
+    currentIndex = images.indexOf(src);
+    document.getElementById('lightbox').classList.add('active');
+    document.getElementById('lightbox-img').src = src;
+  }
+
+  function closeImage(){
+    document.getElementById('lightbox').classList.remove('active');
+  }
+
+  function changeImage(step){
+    currentIndex += step;
+
+    if(currentIndex < 0){
+      currentIndex = images.length - 1;
+    }
+
+    if(currentIndex >= images.length){
+      currentIndex = 0;
+    }
+
+    document.getElementById('lightbox-img').src = images[currentIndex];
+  }
+
+  const darkToggle = document.getElementById("darkToggle");
+  const logo = document.getElementById("logo-mark");
+
+  darkToggle.onclick = () => {
+
+    document.body.classList.toggle("dark-mode");
+
+    const isDark = document.body.classList.contains("dark-mode");
+
+    darkToggle.textContent = isDark ? "☀️" : "🌙";
+
+    if(isDark){
+      logo.src = "My Little Form LOGO MARK_WHITE.png";
+    } else {
+      logo.src = "My Little Form LOGO MARK.png";
+    }
+
+  };
+
+  /* FAQ TOGGLE */
+
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach(item => {
+
+    const button = item.querySelector(".faq-question");
+
+    button.onclick = () => {
+
+      item.classList.toggle("active");
+
+      const icon = button.querySelector("span");
+
+      if(item.classList.contains("active")){
+        icon.textContent = "−";
+      } else {
+        icon.textContent = "+";
+      }
+
+    };
+
+  });
+
+  </script>
+
+</body>
+</html>
