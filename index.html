@@ -242,40 +242,69 @@
     color:#666;
   }
 
-  .gallery{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:15px;
-    justify-items:center;
-    align-items:center;
-    max-width:1000px;
+  /* =========================
+   PRICE LIST CAROUSEL
+   ========================= */
+
+  .gallery-wrapper{
+    width:100%;
+    max-width:1200px;
     margin:auto;
+    overflow:hidden;
+    position:relative;
+    cursor:grab;
+    user-select:none;
+    touch-action:pan-y;
   }
 
-  @media(max-width:900px){
-    .gallery{
-      grid-template-columns:repeat(2, 1fr);
-    }
+  .gallery-wrapper:active{
+    cursor:grabbing;
   }
 
-  @media(max-width:600px){
-    .gallery{
-      grid-template-columns:1fr;
-    }
+  .gallery{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:20px;
+    width:max-content;
+    align-items:center;
+    margin:0;
+    padding:10px 0 20px;
   }
 
   .gallery img{
-    width:100%;
+    width:clamp(280px, 38vw, 480px);
     height:auto;
-    max-width:320px;
+    flex-shrink:0;
     border-radius:25px;
     cursor:pointer;
-    transition:0.3s;
     background:#ddd;
+    display:block;
+    object-fit:contain;
+    transition:transform 0.3s ease;
+    -webkit-user-drag:none;
   }
 
   .gallery img:hover{
-    transform:scale(1.05);
+    transform:scale(1.02);
+  }
+
+
+  /* MOBILE */
+  @media(max-width:768px){
+
+    .gallery-wrapper{
+      width:100%;
+    }
+
+    .gallery{
+      gap:15px;
+    }
+
+    .gallery img{
+      width:82vw;
+      max-width:420px;
+    }
+
   }
 
   .black-section{
@@ -356,61 +385,42 @@
   @media(max-width:768px){
 
     nav{
-      padding:10px 15px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      padding:15px 15px;
       overflow-x:auto;
       white-space:nowrap;
       flex-wrap:nowrap;
+      gap:15px;
     }
-  
-    .nav-left{
-      flex-shrink:0;
-    }
-  
-    .nav-left span{
-      font-size:18px;
-    }
-  
+
     .nav-links{
       display:flex;
-      gap:12px;
+      gap:15px;
       flex-wrap:nowrap;
-      flex-shrink:0;
     }
-  
+
     .nav-links a{
       font-size:14px;
       flex-shrink:0;
     }
-  
+
     .nav-buttons{
-      display:flex;
-      gap:8px;
       flex-shrink:0;
     }
-  
-    .order-btn{
-      padding:8px 14px;
-      font-size:13px;
-    }
-  
+
     .hero h1{
       font-size:60px;
     }
-  
+
     .section-title{
       font-size:48px;
     }
-  
+
   }
 
   nav::-webkit-scrollbar{
     display:none;
   }
-    
+
   .shipping-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
@@ -576,9 +586,6 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-  
-    color:black;
-    -webkit-tap-highlight-color: transparent;
   }
 
   .faq-answer{
@@ -792,36 +799,78 @@
       </h2>
 
       <p class="section-subtitle">
-        Click any image to enlarge.
+        Swipe or drag left and right. Click any image to enlarge.
       </p>
 
-      <div class="gallery">
 
-        <img src="PRICE_LIST_1.png"
-        onclick="openImage(this.src)">
+      <!-- PRICE LIST CAROUSEL -->
 
-        <img src="PRICE_LIST_2.png"
-        onclick="openImage(this.src)">
+      <div class="gallery-wrapper" id="priceGallery">
 
-        <img src="PRICE_LIST_3.png"
-        onclick="openImage(this.src)">
+        <div class="gallery">
 
-        <img src="PRICE_LIST_4.png"
-        onclick="openImage(this.src)">
+          <!-- ORIGINAL IMAGES -->
 
-        <img src="PRICE_LIST_5.png"
-        onclick="openImage(this.src)">
+          <img src="PRICE_LIST_1.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
 
-        <img src="PRICE_LIST_6.png"
-        onclick="openImage(this.src)">
+          <img src="PRICE_LIST_2.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_3.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_4.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_5.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_6.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <!-- DUPLICATE IMAGES FOR SEAMLESS LOOP -->
+
+          <img src="PRICE_LIST_1.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_2.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_3.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_4.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_5.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+          <img src="PRICE_LIST_6.png"
+               data-price-image="true"
+               onclick="openImage(this.dataset.src || this.src)">
+
+        </div>
 
       </div>
 
     </div>
 
-  <p style="text-align:center; margin-top:20px; color:#666; font-size:16px; line-height:1.6;">
-  Prices may increase depending on the level of detail requested. More detailed designs may have additional charges.
-  </p>
+
+    <p style="text-align:center; margin-top:20px; color:#666; font-size:16px; line-height:1.6;">
+      Prices may increase depending on the level of detail requested. More detailed designs may have additional charges.
+    </p>
 
   </section>
 
@@ -1138,37 +1187,297 @@
 
   <script>
 
+  /* =========================
+   PRICE LIST LIGHTBOX
+   ========================= */
+
   let images = [];
   let currentIndex = 0;
 
+
+  /* GET ONLY UNIQUE PRICE LIST IMAGES */
+
   window.onload = () => {
-    images = Array.from(document.querySelectorAll(".gallery img"))
-      .map(img => img.src);
+
+    const priceImages = Array.from(
+      document.querySelectorAll("#priceGallery img")
+    );
+
+    images = [
+      ...new Set(
+        priceImages.map(img => img.src)
+      )
+    ];
+
   };
 
+
+  /* OPEN FULL-SCREEN IMAGE */
+
   function openImage(src){
+
     currentIndex = images.indexOf(src);
-    document.getElementById('lightbox').classList.add('active');
-    document.getElementById('lightbox-img').src = src;
-  }
 
-  function closeImage(){
-    document.getElementById('lightbox').classList.remove('active');
-  }
-
-  function changeImage(step){
-    currentIndex += step;
-
-    if(currentIndex < 0){
-      currentIndex = images.length - 1;
-    }
-
-    if(currentIndex >= images.length){
+    if(currentIndex === -1){
       currentIndex = 0;
     }
 
-    document.getElementById('lightbox-img').src = images[currentIndex];
+    document.getElementById("lightbox").classList.add("active");
+
+    document.getElementById("lightbox-img").src =
+      images[currentIndex];
+
   }
+
+
+  /* CLOSE FULL-SCREEN IMAGE */
+
+  function closeImage(){
+
+    document
+      .getElementById("lightbox")
+      .classList.remove("active");
+
+  }
+
+
+  /* NEXT / PREVIOUS IMAGE */
+
+  function changeImage(step){
+
+    currentIndex += step;
+
+
+    if(currentIndex < 0){
+
+      currentIndex = images.length - 1;
+
+    }
+
+
+    if(currentIndex >= images.length){
+
+      currentIndex = 0;
+
+    }
+
+
+    document.getElementById("lightbox-img").src =
+      images[currentIndex];
+
+  }
+
+
+  /* =========================
+   PRICE LIST CAROUSEL
+   ========================= */
+
+  const priceGalleryWrapper =
+    document.getElementById("priceGallery");
+
+  const priceGallery =
+    priceGalleryWrapper.querySelector(".gallery");
+
+
+  /* =========================
+     CAROUSEL SETTINGS
+     ========================= */
+
+  const carouselSpeed = 0.5;
+
+  let isDragging = false;
+  let hasDragged = false;
+
+  let startX = 0;
+  let startScrollLeft = 0;
+
+
+  /* =========================
+     AUTOMATIC SLIDING
+     ========================= */
+
+  function autoSlide(){
+
+    if(!isDragging){
+
+      priceGalleryWrapper.scrollLeft += carouselSpeed;
+
+      const halfWidth =
+        priceGallery.scrollWidth / 2;
+
+      /*
+        When we reach the duplicated images,
+        jump back to the beginning.
+      */
+
+      if(priceGalleryWrapper.scrollLeft >= halfWidth){
+
+        priceGalleryWrapper.scrollLeft -= halfWidth;
+
+      }
+
+    }
+
+    requestAnimationFrame(autoSlide);
+
+  }
+
+  requestAnimationFrame(autoSlide);
+
+
+  /* =========================
+     MOUSE / TOUCH DRAGGING
+     ========================= */
+
+  priceGalleryWrapper.addEventListener(
+    "pointerdown",
+    function(event){
+
+      isDragging = true;
+      hasDragged = false;
+
+      startX = event.clientX;
+      startScrollLeft =
+        priceGalleryWrapper.scrollLeft;
+
+    }
+  );
+
+
+  priceGalleryWrapper.addEventListener(
+    "pointermove",
+    function(event){
+
+      if(!isDragging){
+        return;
+      }
+
+      const distance =
+        event.clientX - startX;
+
+
+      /*
+        Only treat it as a drag
+        after the pointer moves 8 pixels.
+      */
+
+      if(Math.abs(distance) > 8){
+
+        hasDragged = true;
+
+      }
+
+
+      if(hasDragged){
+
+        priceGalleryWrapper.scrollLeft =
+          startScrollLeft - distance;
+
+        const halfWidth =
+          priceGallery.scrollWidth / 2;
+
+
+        /*
+          Infinite loop
+        */
+
+        if(priceGalleryWrapper.scrollLeft >= halfWidth){
+
+          priceGalleryWrapper.scrollLeft -= halfWidth;
+
+          startScrollLeft =
+            priceGalleryWrapper.scrollLeft;
+
+          startX =
+            event.clientX;
+
+        }
+
+
+        if(priceGalleryWrapper.scrollLeft <= 0){
+
+          priceGalleryWrapper.scrollLeft += halfWidth;
+
+          startScrollLeft =
+            priceGalleryWrapper.scrollLeft;
+
+          startX =
+            event.clientX;
+
+        }
+
+      }
+
+    }
+  );
+
+
+  priceGalleryWrapper.addEventListener(
+    "pointerup",
+    function(){
+
+      isDragging = false;
+
+    }
+  );
+
+
+  priceGalleryWrapper.addEventListener(
+    "pointercancel",
+    function(){
+
+      isDragging = false;
+
+    }
+  );
+
+
+  /* =========================
+     IMAGE CLICK
+     ========================= */
+
+  priceGalleryWrapper.addEventListener(
+    "click",
+    function(event){
+
+      /*
+        If the user dragged the carousel,
+        prevent the accidental image click.
+
+        If the user simply clicked the image,
+        allow the HTML onclick="openImage(...)"
+        to work normally.
+      */
+
+      if(hasDragged){
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        hasDragged = false;
+
+      }
+
+    },
+    false
+  );
+
+
+  /* =========================
+     PAUSE WHEN MOUSE IS OVER
+     ========================= */
+
+  priceGalleryWrapper.addEventListener(
+    "mouseenter",
+    function(){
+
+      /*
+        We don't completely stop the carousel
+        here, but dragging will take priority.
+      */
+
+    }
+  );
 
   const darkToggle = document.getElementById("darkToggle");
   const logo = document.getElementById("logo-mark");
