@@ -254,10 +254,11 @@
     position:relative;
     cursor:grab;
     user-select:none;
-    touch-action:pan-y;
+    touch-action:none;
   }
 
-  .gallery-wrapper:active{
+  .gallery-wrapper:active,
+  .gallery-wrapper.dragging{
     cursor:grabbing;
   }
 
@@ -574,18 +575,14 @@
   }
 
   .faq-question{
-    width:100%;
-    background:none;
-    border:none;
-    outline:none;
-    padding:25px;
-    text-align:left;
-    font-size:20px;
-    font-weight:600;
-    cursor:pointer;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    width:100%; background:none; border:none; outline:none; padding:25px;
+    text-align:left; font-size:20px; font-weight:600; font-family:'DM Sans',sans-serif;
+    color:#000 !important; -webkit-text-fill-color:#000 !important;
+    -webkit-appearance:none; appearance:none; text-decoration:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .faq-question:link,.faq-question:visited,.faq-question:hover,.faq-question:active,.faq-question:focus{
+    color:#000 !important; -webkit-text-fill-color:#000 !important; text-decoration:none !important;
   }
 
   .faq-answer{
@@ -1188,296 +1185,54 @@
   <script>
 
   /* =========================
-   PRICE LIST LIGHTBOX
-   ========================= */
-
-  let images = [];
-  let currentIndex = 0;
-
-
-  /* GET ONLY UNIQUE PRICE LIST IMAGES */
-
-  window.onload = () => {
-
-    const priceImages = Array.from(
-      document.querySelectorAll("#priceGallery img")
-    );
-
-    images = [
-      ...new Set(
-        priceImages.map(img => img.src)
-      )
-    ];
-
-  };
-
-
-  /* OPEN FULL-SCREEN IMAGE */
-
-  function openImage(src){
-
-    currentIndex = images.indexOf(src);
-
-    if(currentIndex === -1){
-      currentIndex = 0;
-    }
-
-    document.getElementById("lightbox").classList.add("active");
-
-    document.getElementById("lightbox-img").src =
-      images[currentIndex];
-
-  }
-
-
-  /* CLOSE FULL-SCREEN IMAGE */
-
-  function closeImage(){
-
-    document
-      .getElementById("lightbox")
-      .classList.remove("active");
-
-  }
-
-
-  /* NEXT / PREVIOUS IMAGE */
-
-  function changeImage(step){
-
-    currentIndex += step;
-
-
-    if(currentIndex < 0){
-
-      currentIndex = images.length - 1;
-
-    }
-
-
-    if(currentIndex >= images.length){
-
-      currentIndex = 0;
-
-    }
-
-
-    document.getElementById("lightbox-img").src =
-      images[currentIndex];
-
-  }
-
-
-  /* =========================
-   PRICE LIST CAROUSEL
-   ========================= */
-
-  const priceGalleryWrapper =
-    document.getElementById("priceGallery");
-
-  const priceGallery =
-    priceGalleryWrapper.querySelector(".gallery");
-
-
-  /* =========================
-     CAROUSEL SETTINGS
+     PRICE LIST CAROUSEL
      ========================= */
+  const priceGalleryWrapper=document.getElementById("priceGallery");
+  const priceGallery=priceGalleryWrapper?priceGalleryWrapper.querySelector(".gallery"):null;
+  const carouselSpeed=0.5;
+  let carouselOffset=0, loopWidth=0, lastFrameTime=0, isDragging=false, hasDragged=false, startX=0, startOffset=0;
 
-  const carouselSpeed = 0.5;
-
-  let isDragging = false;
-  let hasDragged = false;
-
-  let startX = 0;
-  let startScrollLeft = 0;
-
-
-  /* =========================
-     AUTOMATIC SLIDING
-     ========================= */
-
-  function autoSlide(){
-
-    if(!isDragging){
-
-      priceGalleryWrapper.scrollLeft += carouselSpeed;
-
-      const halfWidth =
-        priceGallery.scrollWidth / 2;
-
-      /*
-        When we reach the duplicated images,
-        jump back to the beginning.
-      */
-
-      if(priceGalleryWrapper.scrollLeft >= halfWidth){
-
-        priceGalleryWrapper.scrollLeft -= halfWidth;
-
-      }
-
-    }
-
+  function normalizeCarouselOffset(){
+    if(loopWidth>0) carouselOffset=((carouselOffset%loopWidth)+loopWidth)%loopWidth;
+  }
+  function renderCarousel(){
+    if(priceGallery) priceGallery.style.transform=`translate3d(${-carouselOffset}px,0,0)`;
+  }
+  function refreshCarouselSize(){
+    loopWidth=priceGallery?priceGallery.scrollWidth/2:0; normalizeCarouselOffset(); renderCarousel();
+  }
+  function autoSlide(t){
+    if(!lastFrameTime) lastFrameTime=t;
+    const elapsed=Math.min(t-lastFrameTime,50); lastFrameTime=t;
+    if(!isDragging&&loopWidth>0){ carouselOffset+=carouselSpeed*(elapsed/16.67); normalizeCarouselOffset(); renderCarousel(); }
     requestAnimationFrame(autoSlide);
-
   }
+  function startCarousel(){
+    if(!priceGalleryWrapper||!priceGallery) return;
+    refreshCarouselSize(); lastFrameTime=performance.now(); requestAnimationFrame(autoSlide);
+  }
+  if(document.readyState==="complete") startCarousel(); else window.addEventListener("load",startCarousel,{once:true});
+  window.addEventListener("resize",refreshCarouselSize);
+  window.addEventListener("orientationchange",()=>setTimeout(refreshCarouselSize,150));
 
-  requestAnimationFrame(autoSlide);
-
-
-  /* =========================
-     MOUSE / TOUCH DRAGGING
-     ========================= */
-
-  priceGalleryWrapper.addEventListener(
-    "pointerdown",
-    function(event){
-
-      isDragging = true;
-      hasDragged = false;
-
-      startX = event.clientX;
-      startScrollLeft =
-        priceGalleryWrapper.scrollLeft;
-
+  if(priceGalleryWrapper){
+    priceGalleryWrapper.addEventListener("pointerdown",e=>{
+      if(e.pointerType==="mouse"&&e.button!==0)return;
+      refreshCarouselSize(); isDragging=true; hasDragged=false; startX=e.clientX; startOffset=carouselOffset; lastFrameTime=performance.now(); priceGalleryWrapper.classList.add("dragging");
+      try{priceGalleryWrapper.setPointerCapture(e.pointerId)}catch(x){} e.preventDefault();
+    },{passive:false});
+    priceGalleryWrapper.addEventListener("pointermove",e=>{
+      if(!isDragging)return; const d=e.clientX-startX; if(Math.abs(d)>8)hasDragged=true;
+      if(hasDragged){carouselOffset=startOffset-d; normalizeCarouselOffset(); renderCarousel(); e.preventDefault();}
+    },{passive:false});
+    function endDrag(e){
+      if(!isDragging)return; isDragging=false; lastFrameTime=performance.now(); priceGalleryWrapper.classList.remove("dragging");
+      try{if(e&&priceGalleryWrapper.hasPointerCapture(e.pointerId))priceGalleryWrapper.releasePointerCapture(e.pointerId)}catch(x){}
     }
-  );
-
-
-  priceGalleryWrapper.addEventListener(
-    "pointermove",
-    function(event){
-
-      if(!isDragging){
-        return;
-      }
-
-      const distance =
-        event.clientX - startX;
-
-
-      /*
-        Only treat it as a drag
-        after the pointer moves 8 pixels.
-      */
-
-      if(Math.abs(distance) > 8){
-
-        hasDragged = true;
-
-      }
-
-
-      if(hasDragged){
-
-        priceGalleryWrapper.scrollLeft =
-          startScrollLeft - distance;
-
-        const halfWidth =
-          priceGallery.scrollWidth / 2;
-
-
-        /*
-          Infinite loop
-        */
-
-        if(priceGalleryWrapper.scrollLeft >= halfWidth){
-
-          priceGalleryWrapper.scrollLeft -= halfWidth;
-
-          startScrollLeft =
-            priceGalleryWrapper.scrollLeft;
-
-          startX =
-            event.clientX;
-
-        }
-
-
-        if(priceGalleryWrapper.scrollLeft <= 0){
-
-          priceGalleryWrapper.scrollLeft += halfWidth;
-
-          startScrollLeft =
-            priceGalleryWrapper.scrollLeft;
-
-          startX =
-            event.clientX;
-
-        }
-
-      }
-
-    }
-  );
-
-
-  priceGalleryWrapper.addEventListener(
-    "pointerup",
-    function(){
-
-      isDragging = false;
-
-    }
-  );
-
-
-  priceGalleryWrapper.addEventListener(
-    "pointercancel",
-    function(){
-
-      isDragging = false;
-
-    }
-  );
-
-
-  /* =========================
-     IMAGE CLICK
-     ========================= */
-
-  priceGalleryWrapper.addEventListener(
-    "click",
-    function(event){
-
-      /*
-        If the user dragged the carousel,
-        prevent the accidental image click.
-
-        If the user simply clicked the image,
-        allow the HTML onclick="openImage(...)"
-        to work normally.
-      */
-
-      if(hasDragged){
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        hasDragged = false;
-
-      }
-
-    },
-    false
-  );
-
-
-  /* =========================
-     PAUSE WHEN MOUSE IS OVER
-     ========================= */
-
-  priceGalleryWrapper.addEventListener(
-    "mouseenter",
-    function(){
-
-      /*
-        We don't completely stop the carousel
-        here, but dragging will take priority.
-      */
-
-    }
-  );
+    priceGalleryWrapper.addEventListener("pointerup",endDrag); priceGalleryWrapper.addEventListener("pointercancel",endDrag);
+    priceGalleryWrapper.addEventListener("lostpointercapture",()=>{isDragging=false;priceGalleryWrapper.classList.remove("dragging");lastFrameTime=performance.now()});
+    priceGalleryWrapper.addEventListener("click",e=>{if(hasDragged){e.preventDefault();e.stopPropagation();hasDragged=false}},true);
+  }
 
   const darkToggle = document.getElementById("darkToggle");
   const logo = document.getElementById("logo-mark");
@@ -1525,4 +1280,12 @@
   </script>
 
 </body>
-</html>
+</htmlfunction initializeLightboxImages(){
+    const priceImages=Array.from(document.querySelectorAll("#priceGallery img"));
+    images=[...new Set(priceImages.map(img=>img.src))];
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",initializeLightboxImages);
+  else initializeLightboxImages();
+
+
+>
