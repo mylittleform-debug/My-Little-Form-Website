@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,669 +12,739 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-
 <style>
 
-/* =========================
+/* =========================================================
    GENERAL
-   ========================= */
+   ========================================================= */
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  font-family:'DM Sans',sans-serif;
-  background:white;
-  color:black;
-  overflow-x:hidden;
-  padding-top:80px;
+    font-family:'DM Sans',sans-serif;
+    background:white;
+    color:black;
+    overflow-x:hidden;
+    padding-top:80px;
 }
 
 .title-font{
-  font-family:'Patrick Hand',cursive;
+    font-family:'Patrick Hand',cursive;
+}
+
+section{
+    padding:80px 20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
 }
 
 
-/* =========================
+/* =========================================================
    NAVBAR
-   ========================= */
+   ========================================================= */
 
 nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:80px;
-  background:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 40px;
-  border-bottom:1px solid #eee;
-  z-index:1000;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:80px;
+
+    background:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 40px;
+
+    border-bottom:1px solid #eee;
+
+    z-index:1000;
 }
 
 .nav-left{
-  display:flex;
-  align-items:center;
-  gap:10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
 .nav-left img{
-  width:40px;
-  height:40px;
-  object-fit:contain;
+    width:40px;
+    height:40px;
+    object-fit:contain;
 }
 
 .nav-left span{
-  font-family:'Patrick Hand',cursive;
-  font-size:22px;
+    font-family:'Patrick Hand',cursive;
+    font-size:22px;
 }
 
-
-
-/* RIGHT-SIDE NAVBAR CONTROLS */
-
 .nav-right{
-  display:flex;
-  align-items:center;
-  gap:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .nav-order{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 22px;
-  border-radius:999px;
-  background:black;
-  color:white;
-  text-decoration:none;
-  font-size:15px;
-  font-weight:500;
-  transition:0.3s;
-  white-space:nowrap;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    background:black;
+    color:white;
+
+    text-decoration:none;
+
+    font-size:15px;
+    font-weight:500;
+
+    transition:0.3s;
+
+    white-space:nowrap;
 }
 
 .nav-order:hover{
-  transform:scale(1.05);
-  background:#333;
+    transform:scale(1.05);
+    background:#333;
 }
 
 .dark-toggle{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-  min-height:48px;
-  padding:0 14px;
-  border:1px solid #ddd;
-  border-radius:999px;
-  background:white;
-  color:black;
-  font-family:'DM Sans',sans-serif;
-  font-size:15px;
-  cursor:pointer;
-  transition:0.3s;
-  white-space:nowrap;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:7px;
+
+    min-height:48px;
+    padding:0 14px;
+
+    border:1px solid #ddd;
+    border-radius:999px;
+
+    background:white;
+    color:black;
+
+    font-family:'DM Sans',sans-serif;
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    white-space:nowrap;
 }
 
 .dark-toggle:hover{
-  background:#f3f3f3;
+    background:#f3f3f3;
 }
 
-/* HAMBURGER BUTTON */
-
 .menu-toggle{
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  width:48px;
-  height:48px;
+    width:48px;
+    height:48px;
 
-  background:none;
-  border:none;
+    background:none;
+    border:none;
 
-  font-size:32px;
-  line-height:1;
+    font-size:32px;
+    line-height:1;
 
-  color:black;
-  cursor:pointer;
+    color:black;
 
-  border-radius:12px;
+    cursor:pointer;
 
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+    border-radius:12px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .menu-toggle:hover{
-  background:#f3f3f3;
+    background:#f3f3f3;
 }
 
 .menu-toggle:active{
-  transform:scale(0.95);
+    transform:scale(0.95);
 }
 
 
-/* =========================
+/* =========================================================
    HAMBURGER MENU
-   ========================= */
+   ========================================================= */
 
 .mobile-menu{
-  display:none;
+    display:none;
 
-  position:fixed;
+    position:fixed;
 
-  top:95px;
-  right:25px;
+    top:95px;
+    right:25px;
 
-  width:280px;
+    width:280px;
 
-  max-height:calc(100vh - 120px);
+    max-height:calc(100vh - 120px);
 
-  overflow-y:auto;
+    overflow-y:auto;
 
-  background:white;
+    background:white;
 
-  border:1px solid #eee;
+    border:1px solid #eee;
 
-  border-radius:25px;
+    border-radius:25px;
 
-  padding:15px;
+    padding:15px;
 
-  box-shadow:0 15px 40px rgba(0,0,0,0.18);
+    box-shadow:0 15px 40px rgba(0,0,0,0.18);
 
-  z-index:9998;
+    z-index:9998;
 }
 
 .mobile-menu.active{
-  display:flex;
-  flex-direction:column;
+    display:flex;
+    flex-direction:column;
 }
 
 .mobile-menu a,
 .mobile-menu button{
-  display:block;
+    display:block;
 
-  width:100%;
+    width:100%;
 
-  padding:15px 18px;
+    padding:15px 18px;
 
-  border:none;
+    border:none;
 
-  background:none;
+    background:none;
 
-  color:black;
+    color:black;
 
-  text-decoration:none;
+    text-decoration:none;
 
-  font-family:'DM Sans',sans-serif;
+    font-family:'DM Sans',sans-serif;
 
-  font-size:16px;
+    font-size:16px;
 
-  font-weight:500;
+    font-weight:500;
 
-  text-align:left;
+    text-align:left;
 
-  border-radius:15px;
+    border-radius:15px;
 
-  cursor:pointer;
+    cursor:pointer;
 
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .mobile-menu a:hover,
 .mobile-menu button:hover{
-  background:#f3f3f3;
+    background:#f3f3f3;
 }
 
 .mobile-menu a:active,
 .mobile-menu button:active{
-  transform:scale(0.98);
+    transform:scale(0.98);
 }
 
 .mobile-menu-divider{
-  height:1px;
-  background:#eee;
-  margin:8px 0;
+    height:1px;
+    background:#eee;
+    margin:8px 0;
 }
 
 .mobile-order{
-  background:black !important;
-  color:white !important;
-  text-align:center !important;
-  margin-top:5px;
+    background:black !important;
+    color:white !important;
+    text-align:center !important;
+    margin-top:5px;
 }
 
 
-/* =========================
-   SECTIONS
-   ========================= */
-
-section{
-  padding:80px 20px;
-}
-
-.container{
-  max-width:1200px;
-  margin:auto;
-}
-
-
-/* =========================
+/* =========================================================
    HERO
-   ========================= */
+   ========================================================= */
 
 .hero{
-  min-height:100vh;
+    min-height:100vh;
 
-  display:flex;
+    display:flex;
+    flex-direction:column;
 
-  flex-direction:column;
+    justify-content:center;
+    align-items:center;
 
-  justify-content:center;
+    text-align:center;
 
-  align-items:center;
-
-  text-align:center;
-
-  background:linear-gradient(
-    to bottom,
-    white,
-    #f3f3f3
-  );
+    background:linear-gradient(
+        to bottom,
+        white,
+        #f3f3f3
+    );
 }
 
 .hero-grid{
-  display:grid;
+    display:grid;
 
-  grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,minmax(0,1fr));
 
-  align-items:center;
+    align-items:center;
 
-  gap:30px;
+    gap:30px;
 
-  max-width:1200px;
+    max-width:1200px;
 
-  margin:auto;
+    width:100%;
 
-  text-align:left;
+    margin:auto;
+
+    text-align:left;
 }
 
 .hero-image img{
-  width:100%;
+    width:100%;
 
-  border-radius:25px;
+    border-radius:25px;
 
-  object-fit:cover;
+    object-fit:cover;
+
+    display:block;
 }
 
 .hero-text{
-  display:flex;
+    display:flex;
 
-  flex-direction:column;
+    flex-direction:column;
 
-  justify-content:center;
+    justify-content:center;
 
-  align-items:center;
+    align-items:center;
 
-  text-align:center;
+    text-align:center;
 }
 
 .hero h1{
-  font-size:90px;
+    font-size:90px;
 
-  margin-top:20px;
+    margin-top:20px;
 }
 
 .description{
-  max-width:800px;
+    max-width:800px;
 
-  margin-top:25px;
+    margin-top:25px;
 
-  line-height:1.8;
+    line-height:1.8;
 
-  color:#666;
+    color:#666;
 
-  font-size:18px;
+    font-size:18px;
 }
 
 .btn-group{
-  display:flex;
+    display:flex;
 
-  gap:15px;
+    gap:15px;
 
-  margin-top:40px;
+    margin-top:40px;
 
-  flex-wrap:wrap;
+    flex-wrap:wrap;
 
-  justify-content:center;
+    justify-content:center;
 
-  align-items:center;
+    align-items:center;
 }
 
 .btn{
-  padding:14px 30px;
+    padding:14px 30px;
 
-  border-radius:999px;
+    border-radius:999px;
 
-  text-decoration:none;
+    text-decoration:none;
 
-  transition:0.3s;
+    transition:0.3s;
 
-  font-weight:500;
+    font-weight:500;
 }
 
 .btn-black{
-  background:black;
-  color:white;
+    background:black;
+    color:white;
 }
 
 .btn-white{
-  border:1px solid black;
-  color:black;
+    border:1px solid black;
+    color:black;
 }
 
 .btn:hover{
-  transform:scale(1.05);
+    transform:scale(1.05);
 }
 
 
-/* =========================
+/* =========================================================
    TITLES
-   ========================= */
+   ========================================================= */
 
 .section-title{
-  text-align:center;
+    text-align:center;
 
-  font-size:65px;
+    font-size:65px;
 
-  margin-bottom:20px;
+    margin-bottom:20px;
 }
 
 .section-subtitle{
-  text-align:center;
+    text-align:center;
 
-  color:#666;
+    color:#666;
 
-  margin-bottom:50px;
+    margin-bottom:50px;
 
-  font-size:18px;
+    font-size:18px;
 }
 
 
-/* =========================
-   GRID
-   ========================= */
+/* =========================================================
+   STANDARD TWO-COLUMN GRID
+   ========================================================= */
 
 .grid-2{
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(300px,1fr)
-    );
+    grid-template-columns:repeat(2,minmax(0,1fr));
 
-  gap:30px;
+    gap:30px;
 
-  align-items:center;
+    align-items:center;
 }
 
 
-/* =========================
+/* =========================================================
+   ABOUT US
+   FIXED IMAGE SIZE
+   ========================================================= */
+
+.about-content{
+    display:grid;
+
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+
+    gap:50px;
+
+    align-items:center;
+
+    width:100%;
+}
+
+.about-text{
+    width:100%;
+}
+
+.about-text p{
+    line-height:1.9;
+    color:#666;
+    font-size:18px;
+}
+
+.about-image{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    border-radius:25px;
+}
+
+.about-image img{
+    display:block;
+
+    width:100%;
+    height:auto;
+
+    max-width:100%;
+
+    border-radius:25px;
+
+    object-fit:cover;
+
+    transition:
+        transform 0.4s ease;
+}
+
+.about-image:hover img{
+    transform:scale(1.03);
+}
+
+
+/* =========================================================
    CARDS
-   ========================= */
+   ========================================================= */
 
 .card{
-  background:#f5f5f5;
+    background:#f5f5f5;
 
-  padding:30px;
+    padding:30px;
 
-  border-radius:35px;
+    border-radius:35px;
 
-  transition:0.3s;
+    transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+    transform:translateY(-5px);
 }
 
 .card img{
-  width:100%;
+    width:100%;
 
-  border-radius:25px;
+    border-radius:25px;
 
-  margin-bottom:20px;
+    margin-bottom:20px;
 
-  object-fit:cover;
+    object-fit:cover;
+
+    display:block;
 }
 
 .card h3{
-  font-size:40px;
+    font-size:40px;
 
-  margin-bottom:15px;
+    margin-bottom:15px;
 }
 
 .card p{
-  line-height:1.8;
+    line-height:1.8;
 
-  color:#666;
+    color:#666;
 }
 
 
-/* =========================
+/* =========================================================
    PRICE LIST CAROUSEL
-   ========================= */
+   ========================================================= */
 
 .gallery-wrapper{
-  width:100%;
+    width:100%;
 
-  max-width:1200px;
+    max-width:1200px;
 
-  margin:auto;
+    margin:auto;
 
-  overflow:hidden;
+    overflow:hidden;
 
-  position:relative;
+    position:relative;
 
-  cursor:grab;
+    cursor:grab;
 
-  user-select:none;
+    user-select:none;
 
-  touch-action:none;
+    touch-action:none;
 }
 
 .gallery-wrapper:active,
 .gallery-wrapper.dragging{
-  cursor:grabbing;
+    cursor:grabbing;
 }
 
 .gallery{
-  display:flex;
+    display:flex;
 
-  flex-wrap:nowrap;
+    flex-wrap:nowrap;
 
-  gap:20px;
+    gap:20px;
 
-  width:max-content;
+    width:max-content;
 
-  align-items:center;
+    align-items:center;
 
-  margin:0;
+    margin:0;
 
-  padding:10px 0 20px;
+    padding:10px 0 20px;
 }
 
 .gallery img{
-  width:clamp(
-    280px,
-    38vw,
-    480px
-  );
+    width:clamp(
+        280px,
+        38vw,
+        480px
+    );
 
-  height:auto;
+    height:auto;
 
-  flex-shrink:0;
+    flex-shrink:0;
 
-  border-radius:25px;
+    border-radius:25px;
 
-  cursor:pointer;
+    cursor:pointer;
 
-  background:#ddd;
+    background:#ddd;
 
-  display:block;
+    display:block;
 
-  object-fit:contain;
+    object-fit:contain;
 
-  transition:
-    transform 0.3s ease;
+    transition:
+        transform 0.3s ease;
 
-  -webkit-user-drag:none;
+    -webkit-user-drag:none;
 }
 
 .gallery img:hover{
-  transform:scale(1.02);
+    transform:scale(1.02);
 }
 
 
-/* =========================
+/* =========================================================
    BLACK SECTION
-   ========================= */
+   ========================================================= */
 
 .black-section{
-  background:black;
-  color:white;
+    background:black;
+    color:white;
 }
 
 .step{
-  background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.08);
 
-  padding:25px;
+    padding:25px;
 
-  border-radius:30px;
+    border-radius:30px;
 
-  margin-bottom:20px;
+    margin-bottom:20px;
 
-  line-height:1.8;
+    line-height:1.8;
 }
 
 .step h3{
-  margin-bottom:10px;
+    margin-bottom:10px;
 
-  font-size:28px;
+    font-size:28px;
 }
 
 
-/* =========================
+/* =========================================================
    SHIPPING
-   ========================= */
+   ========================================================= */
 
 .shipping-grid{
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    repeat(3,1fr);
+    grid-template-columns:repeat(3,minmax(0,1fr));
 
-  gap:25px;
+    gap:25px;
 
-  margin-top:30px;
+    margin-top:30px;
 }
 
 .shipping-card{
-  background:white;
+    background:white;
 
-  padding:20px;
+    padding:20px;
 
-  border-radius:25px;
+    border-radius:25px;
 
-  text-align:center;
+    text-align:center;
 }
 
 .shipping-card img{
-  width:100%;
+    width:100%;
 
-  height:200px;
+    height:200px;
 
-  object-fit:cover;
+    object-fit:cover;
 
-  border-radius:20px;
+    border-radius:20px;
 
-  margin-bottom:15px;
+    margin-bottom:15px;
 
-  cursor:pointer;
+    cursor:pointer;
+
+    display:block;
 }
 
 
-/* =========================
-   FAQS
-   ========================= */
+/* =========================================================
+   FAQ
+   ========================================================= */
 
 .faq-container{
-  max-width:900px;
+    max-width:900px;
 
-  margin:auto;
+    margin:auto;
 }
 
 .faq-item{
-  background:#f5f5f5;
+    background:#f5f5f5;
 
-  border-radius:25px;
+    border-radius:25px;
 
-  margin-bottom:15px;
+    margin-bottom:15px;
 
-  overflow:hidden;
+    overflow:hidden;
 
-  transition:0.3s;
+    transition:0.3s;
 }
 
 .faq-question{
-  width:100%;
+    width:100%;
 
-  background:none;
+    background:none;
 
-  border:none;
+    border:none;
 
-  outline:none;
+    outline:none;
 
-  padding:25px;
+    padding:25px;
 
-  text-align:left;
+    text-align:left;
 
-  font-size:20px;
+    font-size:20px;
 
-  font-weight:600;
+    font-weight:600;
 
-  font-family:'DM Sans',sans-serif;
+    font-family:'DM Sans',sans-serif;
 
-  color:#000 !important;
+    color:#000 !important;
 
-  -webkit-text-fill-color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
 
-  -webkit-appearance:none;
+    -webkit-appearance:none;
 
-  appearance:none;
+    appearance:none;
 
-  text-decoration:none;
+    text-decoration:none;
 
-  cursor:pointer;
+    cursor:pointer;
 
-  display:flex;
+    display:flex;
 
-  justify-content:space-between;
+    justify-content:space-between;
 
-  align-items:center;
+    align-items:center;
 }
 
 .faq-question:link,
@@ -683,1449 +752,1625 @@ section{
 .faq-question:hover,
 .faq-question:active,
 .faq-question:focus{
-  color:#000 !important;
+    color:#000 !important;
 
-  -webkit-text-fill-color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
 
-  text-decoration:none !important;
+    text-decoration:none !important;
 }
 
 .faq-answer{
-  max-height:0;
+    max-height:0;
 
-  overflow:hidden;
+    overflow:hidden;
 
-  transition:max-height 0.4s ease;
+    transition:max-height 0.4s ease;
 
-  padding:0 25px;
+    padding:0 25px;
 
-  line-height:1.8;
+    line-height:1.8;
 
-  color:#666;
+    color:#666;
 }
 
 .faq-item.active .faq-answer{
-  max-height:500px;
+    max-height:500px;
 
-  padding-bottom:25px;
+    padding-bottom:25px;
 }
 
 .faq-question span{
-  font-size:28px;
+    font-size:28px;
 }
 
 
-/* =========================
+/* =========================================================
    CONTACT
-   ========================= */
+   ========================================================= */
 
 .contact-grid{
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(220px,1fr)
-    );
+    grid-template-columns:repeat(4,minmax(0,1fr));
 
-  gap:20px;
+    gap:20px;
 }
 
 .contact-card{
-  background:#f5f5f5;
+    background:#f5f5f5;
 
-  padding:30px;
+    padding:30px;
 
-  border-radius:30px;
+    border-radius:30px;
 
-  text-align:center;
+    text-align:center;
 
-  text-decoration:none;
+    text-decoration:none;
 
-  color:black;
+    color:black;
 
-  transition:0.3s;
+    transition:0.3s;
 }
 
 .contact-card:hover{
-  background:black;
+    background:black;
 
-  color:white;
+    color:white;
 }
 
 .contact-icon{
-  width:60px;
+    width:60px;
 
-  height:60px;
+    height:60px;
 
-  object-fit:contain;
+    object-fit:contain;
 
-  margin-bottom:15px;
+    margin-bottom:15px;
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-   ========================= */
+   ========================================================= */
 
 footer{
-  background:black;
+    background:black;
 
-  color:white;
+    color:white;
 
-  text-align:center;
+    text-align:center;
 
-  padding:30px;
+    padding:30px;
 }
 
 
-/* =========================
+/* =========================================================
    LIGHTBOX
-   ========================= */
+   ========================================================= */
 
 .lightbox{
-  display:none;
+    display:none;
 
-  position:fixed;
+    position:fixed;
 
-  z-index:99999;
+    z-index:99999;
 
-  left:0;
+    left:0;
+    top:0;
 
-  top:0;
+    width:100%;
+    height:100%;
 
-  width:100%;
+    background:rgba(0,0,0,0.9);
 
-  height:100%;
+    justify-content:center;
 
-  background:rgba(0,0,0,0.9);
+    align-items:center;
 
-  justify-content:center;
-
-  align-items:center;
-
-  padding:20px;
+    padding:20px;
 }
 
 .lightbox img{
-  max-width:90%;
+    max-width:90%;
 
-  max-height:90%;
+    max-height:90%;
 
-  border-radius:20px;
+    border-radius:20px;
 }
 
 .lightbox.active{
-  display:flex;
+    display:flex;
 }
 
 .nav-btn{
-  position:absolute;
+    position:absolute;
 
-  top:50%;
+    top:50%;
 
-  transform:translateY(-50%);
+    transform:translateY(-50%);
 
-  background:rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.2);
 
-  border:none;
+    border:none;
 
-  color:white;
+    color:white;
 
-  font-size:40px;
+    font-size:40px;
 
-  padding:10px 20px;
+    padding:10px 20px;
 
-  cursor:pointer;
+    cursor:pointer;
 
-  border-radius:10px;
+    border-radius:10px;
 
-  z-index:100000;
+    z-index:100000;
 }
 
 .nav-btn:hover{
-  background:rgba(255,255,255,0.35);
+    background:rgba(255,255,255,0.35);
 }
 
 .left{
-  left:20px;
+    left:20px;
 }
 
 .right{
-  right:20px;
+    right:20px;
 }
 
 
-/* =========================
+/* =========================================================
    DARK MODE
-   ========================= */
+   ========================================================= */
 
 .dark-mode{
-  background:#111;
+    background:#111;
 
-  color:white;
+    color:white;
 }
 
 .dark-mode nav{
-  background:#111;
+    background:#111;
 
-  border-bottom:1px solid #333;
+    border-bottom:1px solid #333;
 }
 
 .dark-mode .menu-toggle{
-  color:white;
+    color:white;
 }
 
 .dark-mode .menu-toggle:hover{
-  background:#222;
+    background:#222;
 }
 
 .dark-mode .mobile-menu{
-  background:#111;
+    background:#111;
 
-  border-color:#333;
+    border-color:#333;
 
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.5);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.5);
 }
 
 .dark-mode .mobile-menu a,
 .dark-mode .mobile-menu button{
-  color:white;
+    color:white;
 }
 
 .dark-mode .mobile-menu a:hover,
 .dark-mode .mobile-menu button:hover{
-  background:#222;
+    background:#222;
 }
 
 .dark-mode .mobile-menu-divider{
-  background:#333;
+    background:#333;
 }
 
 .dark-mode .mobile-order{
-  background:white !important;
+    background:white !important;
 
-  color:black !important;
+    color:black !important;
 }
 
 .dark-mode .card,
 .dark-mode .contact-card,
 .dark-mode .shipping-card{
-  background:#1e1e1e;
+    background:#1e1e1e;
 
-  color:white;
+    color:white;
 }
 
 .dark-mode .card p,
 .dark-mode .section-subtitle,
 .dark-mode .description,
 .dark-mode p{
-  color:#ccc;
+    color:#ccc;
 }
 
 .dark-mode .hero{
-  background:
-    linear-gradient(
-      to bottom,
-      #111,
-      #1b1b1b
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            #111,
+            #1b1b1b
+        );
 }
 
 .dark-mode footer{
-  background:#000;
+    background:#000;
 }
 
 .dark-mode .btn-white{
-  border:1px solid white;
+    border:1px solid white;
 
-  color:white;
+    color:white;
 }
 
 .dark-mode #products,
 .dark-mode #shipping{
-  background:#181818 !important;
+    background:#181818 !important;
 }
 
 .dark-mode .faq-item{
-  background:#1e1e1e;
+    background:#1e1e1e;
 }
 
 .dark-mode .faq-answer{
-  color:#ccc;
+    color:#ccc;
 }
 
 .dark-mode .faq-question{
-  color:white !important;
+    color:white !important;
 
-  -webkit-text-fill-color:white !important;
+    -webkit-text-fill-color:white !important;
 }
 
 
-/* =========================
-   MOBILE / TABLET
-   ========================= */
-
-@media(max-width:900px){
-
-  .shipping-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media(max-width:768px){
 
-  nav{
-    padding:15px 15px;
-  }
+    nav{
+        padding:15px;
+    }
 
-  .nav-right{
-    gap:6px;
-  }
+    .nav-right{
+        gap:6px;
+    }
 
-  .nav-order{
-    padding:10px 13px;
-    font-size:13px;
-  }
+    .nav-order{
+        padding:10px 13px;
 
-  .dark-toggle{
-    width:42px;
-    min-height:42px;
-    padding:0;
-    gap:0;
-    font-size:18px;
-  }
+        font-size:13px;
+    }
 
-  .dark-toggle span{
-    display:none;
-  }
+    .dark-toggle{
+        width:42px;
 
-  .menu-toggle{
-    width:42px;
-    height:42px;
-    font-size:28px;
-  }
+        min-height:42px;
 
-  .mobile-menu{
-    top:90px;
+        padding:0;
 
-    right:15px;
+        gap:0;
 
-    width:
-      calc(100% - 30px);
+        font-size:18px;
+    }
 
-    max-width:350px;
-  }
+    .dark-toggle span{
+        display:none;
+    }
 
-  .hero-grid{
-    grid-template-columns:1fr;
+    .menu-toggle{
+        width:42px;
 
-    text-align:center;
-  }
+        height:42px;
 
-  .hero-image img{
-    margin:auto;
-  }
+        font-size:28px;
+    }
 
-  .hero h1{
-    font-size:60px;
-  }
+    .mobile-menu{
+        top:90px;
 
-  .section-title{
-    font-size:48px;
-  }
+        right:15px;
 
-  .gallery-wrapper{
-    width:100%;
-  }
+        width:calc(100% - 30px);
 
-  .gallery{
-    gap:15px;
-  }
+        max-width:350px;
+    }
 
-  .gallery img{
-    width:82vw;
 
-    max-width:420px;
-  }
+    /* =====================================================
+       HOME
+       ===================================================== */
 
+    .hero-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+
+        text-align:left;
+
+        gap:20px;
+    }
+
+    .hero-image{
+        width:100%;
+    }
+
+    .hero-image img{
+        width:100%;
+
+        margin:auto;
+    }
+
+    .hero-text{
+        width:100%;
+
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .description{
+        font-size:15px;
+
+        line-height:1.6;
+    }
+
+    .btn-group{
+        gap:10px;
+
+        margin-top:25px;
+    }
+
+    .btn{
+        padding:11px 18px;
+
+        font-size:14px;
+    }
+
+
+    /* =====================================================
+       ABOUT US
+       KEEP TWO COLUMNS BUT IMAGE FILLS ITS COLUMN
+       ===================================================== */
+
+    .about-content{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+
+        gap:20px;
+    }
+
+    .about-text{
+        width:100%;
+    }
+
+    .about-text p{
+        font-size:15px;
+
+        line-height:1.7;
+    }
+
+    .about-image{
+        width:100%;
+    }
+
+    .about-image img{
+        width:100%;
+
+        height:auto;
+
+        max-width:none;
+    }
+
+
+    /* =====================================================
+       PRODUCTS
+       ===================================================== */
+
+    #products .grid-2{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .card{
+        padding:18px;
+
+        border-radius:25px;
+    }
+
+    .card h3{
+        font-size:28px;
+    }
+
+    .card p{
+        font-size:14px;
+
+        line-height:1.6;
+    }
+
+
+    /* =====================================================
+       SHIPPING
+       ===================================================== */
+
+    .shipping-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+
+        gap:12px;
+    }
+
+    .shipping-card{
+        padding:12px;
+
+        border-radius:18px;
+    }
+
+    .shipping-card img{
+        height:auto;
+
+        width:100%;
+
+        border-radius:15px;
+    }
+
+    .shipping-card p{
+        font-size:12px;
+
+        line-height:1.5;
+    }
+
+
+    /* =====================================================
+       CONTACT
+       ===================================================== */
+
+    .contact-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+
+        gap:10px;
+    }
+
+    .contact-card{
+        padding:15px 8px;
+
+        border-radius:20px;
+    }
+
+    .contact-icon{
+        width:45px;
+
+        height:45px;
+    }
+
+    .contact-card h3{
+        font-size:22px;
+    }
+
+    .contact-card p{
+        font-size:11px;
+
+        line-height:1.4;
+
+        word-break:break-word;
+    }
+
+
+    /* =====================================================
+       TITLES
+       ===================================================== */
+
+    .section-title{
+        font-size:48px;
+    }
+
+
+    /* =====================================================
+       PRICE LIST
+       ===================================================== */
+
+    .gallery-wrapper{
+        width:100%;
+    }
+
+    .gallery{
+        gap:15px;
+    }
+
+    .gallery img{
+        width:82vw;
+
+        max-width:420px;
+    }
 }
 
 
-/* Hide scrollbar */
+/* =========================================================
+   HIDE SCROLLBAR
+   ========================================================= */
 
 .mobile-menu::-webkit-scrollbar,
 nav::-webkit-scrollbar{
-  display:none;
+    display:none;
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      NAVBAR
-     ========================= -->
+     ========================================================= -->
 
 <nav>
 
-  <div class="nav-left">
+    <div class="nav-left">
 
-    <img
-      id="logo-mark"
-      src="My Little Form LOGO MARK.png"
-      alt="My Little Form Logo"
-    >
+        <img
+            id="logo-mark"
+            src="My Little Form LOGO MARK.png"
+            alt="My Little Form Logo"
+        >
 
-    <span>My Little Form</span>
+        <span>My Little Form</span>
 
-  </div>
+    </div>
 
-  <div class="nav-right">
 
-    <a
-      href="https://www.facebook.com/people/My-Little-Form/61587764145878/"
-      class="nav-order"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Order Now
-    </a>
+    <div class="nav-right">
 
-    <button
-      class="dark-toggle"
-      id="darkToggle"
-      aria-label="Toggle dark mode"
-      type="button"
-    >
-      🌙 <span>Dark Mode</span>
-    </button>
+        <a
+            href="https://www.facebook.com/people/My-Little-Form/61587764145878/"
+            class="nav-order"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Order Now
+        </a>
 
-    <button
-      class="menu-toggle"
-      id="menuToggle"
-      aria-label="Open navigation"
-      aria-expanded="false"
-      type="button"
-    >
-      ☰
-    </button>
 
-  </div>
+        <button
+            class="dark-toggle"
+            id="darkToggle"
+            aria-label="Toggle dark mode"
+            type="button"
+        >
+            🌙 <span>Dark Mode</span>
+        </button>
+
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            type="button"
+        >
+            ☰
+        </button>
+
+    </div>
 
 </nav>
 
 
-<!-- =========================
+<!-- =========================================================
      HAMBURGER MENU
-     ========================= -->
+     ========================================================= -->
 
 <div
-  class="mobile-menu"
-  id="mobileMenu"
+    class="mobile-menu"
+    id="mobileMenu"
 >
 
-  <a href="#">Home</a>
+    <a href="#">Home</a>
 
-  <a href="#About">About Us</a>
+    <a href="#About">About Us</a>
 
-  <a href="#products">Products</a>
+    <a href="#products">Products</a>
 
-  <a href="#price">Price</a>
+    <a href="#price">Price</a>
 
-  <a href="#preorder">Pre-Order</a>
+    <a href="#preorder">Pre-Order</a>
 
-  <a href="#shipping">Shipping Note</a>
+    <a href="#shipping">Shipping Note</a>
 
-  <a href="#faqs">FAQs</a>
+    <a href="#faqs">FAQs</a>
 
-  <a href="#contact">Contact</a>
+    <a href="#contact">Contact</a>
 
+    <div class="mobile-menu-divider"></div>
 
-  <div class="mobile-menu-divider"></div>
 </div>
 
 
-<!-- =========================
-     HERO
-     ========================= -->
+<!-- =========================================================
+     HERO / HOME
+     ========================================================= -->
 
 <section class="hero">
 
-  <div class="hero-grid">
+    <div class="hero-grid">
 
 
-    <div class="hero-image">
+        <div class="hero-image">
 
-      <img
-        src="MLF_POSTER.jpg"
-        alt="My Little Form"
-      >
+            <img
+                src="MLF_POSTER.jpg"
+                alt="My Little Form"
+            >
+
+        </div>
+
+
+        <div class="hero-text">
+
+            <h1 class="title-font">
+                Every Little Form Tells a Story
+            </h1>
+
+
+            <p class="description">
+
+                Personalized clay figures sculpted with care
+                and designed to turn your memories into
+                handmade keepsakes.
+
+            </p>
+
+
+            <div class="btn-group">
+
+                <a
+                    href="#products"
+                    class="btn btn-black"
+                >
+                    View Products
+                </a>
+
+
+                <a
+                    href="#preorder"
+                    class="btn btn-white"
+                >
+                    Pre-Order Now
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
-
-
-    <div class="hero-text">
-
-      <h1 class="title-font">
-        Every Little Form Tells a Story
-      </h1>
-
-
-      <p class="description">
-
-        Personalized clay figures sculpted with care
-        and designed to turn your memories into
-        handmade keepsakes.
-
-      </p>
-
-
-      <div class="btn-group">
-
-        <a
-          href="#products"
-          class="btn btn-black"
-        >
-          View Products
-        </a>
-
-
-        <a
-          href="#preorder"
-          class="btn btn-white"
-        >
-          Pre-Order Now
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
-     ABOUT
-     ========================= -->
+<!-- =========================================================
+     ABOUT US
+     ========================================================= -->
 
 <section id="About">
 
-  <div class="container">
+    <div class="container">
 
-    <h2 class="section-title title-font">
-      About Us
-    </h2>
-
-
-    <div class="grid-2">
-
-      <div>
-
-        <p
-          style="
-            line-height:1.9;
-            color:#666;
-            font-size:18px;
-          "
-        >
-
-          My Little Form started in January 2026
-          with the goal of creating handmade
-          personalized keepsakes that capture
-          meaningful memories through clay art.
-
-          <br><br>
-
-          Every product is carefully sculpted and
-          crafted to reflect the personality,
-          story, and emotion behind each order.
-
-          <br><br>
-
-          Aside from personalized clay figures,
-          we also introduced My Little Charm,
-          a personalized clay keychain collection
-          designed for people who want smaller
-          but meaningful handmade pieces they can
-          bring anywhere.
-
-        </p>
-
-      </div>
+        <h2 class="section-title title-font">
+            About Us
+        </h2>
 
 
-      <div class="grid-2">
+        <!-- FIXED: NO NESTED GRID-2 -->
+        <div class="about-content">
 
-        <img
-          src="MLF_ABOUT_US.jpg"
 
-          style="
-            width:100%;
-            border-radius:25px;
-            transition:0.4s;
-          "
+            <div class="about-text">
 
-          onmouseover="
-            this.src='MLF_ABOUT_US_C.png';
-            this.style.transform='scale(1.05)';
-          "
+                <p>
 
-          onmouseout="
-            this.src='MLF_ABOUT_US.jpg';
-            this.style.transform='scale(1)';
-          "
-        >
+                    My Little Form started in January 2026
+                    with the goal of creating handmade
+                    personalized keepsakes that capture
+                    meaningful memories through clay art.
 
-      </div>
+                    <br><br>
+
+                    Every product is carefully sculpted and
+                    crafted to reflect the personality,
+                    story, and emotion behind each order.
+
+                    <br><br>
+
+                    Aside from personalized clay figures,
+                    we also introduced My Little Charm,
+                    a personalized clay keychain collection
+                    designed for people who want smaller
+                    but meaningful handmade pieces they can
+                    bring anywhere.
+
+                </p>
+
+            </div>
+
+
+            <!-- FIXED IMAGE CONTAINER -->
+
+            <div class="about-image">
+
+                <img
+                    src="MLF_ABOUT_US.jpg"
+                    alt="About My Little Form"
+                    id="aboutImage"
+                >
+
+            </div>
+
+        </div>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      PRODUCTS
-     ========================= -->
+     ========================================================= -->
 
 <section
-  id="products"
-  style="background:#f3f3f3;"
+    id="products"
+    style="background:#f3f3f3;"
 >
 
-  <div class="container">
+    <div class="container">
 
-    <h2 class="section-title title-font">
-      Our Products
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Handmade personalized creations
-      made with air dry clay.
-
-    </p>
+        <h2 class="section-title title-font">
+            Our Products
+        </h2>
 
 
-    <div class="grid-2">
+        <p class="section-subtitle">
 
-
-      <div class="card">
-
-        <img src="PRODUCT_1.png">
-
-        <h3 class="title-font">
-          Personalized Figures
-        </h3>
-
-        <p>
-
-          Customized clay figures inspired by
-          your photos, memories, favorite people,
-          or special moments.
+            Handmade personalized creations
+            made with air dry clay.
 
         </p>
 
-      </div>
+
+        <div class="grid-2">
 
 
-      <div class="card">
+            <div class="card">
 
-        <img src="PRODUCT_2.png">
+                <img
+                    src="PRODUCT_1.png"
+                    alt="Personalized Figures"
+                >
 
-        <h3 class="title-font">
-          My Little Charm
-        </h3>
+                <h3 class="title-font">
+                    Personalized Figures
+                </h3>
 
-        <p>
+                <p>
 
-          Personalized clay charms and keychains
-          designed to become small keepsakes
-          you can carry every day.
+                    Customized clay figures inspired by
+                    your photos, memories, favorite people,
+                    or special moments.
 
-        </p>
+                </p>
 
-      </div>
+            </div>
 
+
+            <div class="card">
+
+                <img
+                    src="PRODUCT_2.png"
+                    alt="My Little Charm"
+                >
+
+                <h3 class="title-font">
+                    My Little Charm
+                </h3>
+
+                <p>
+
+                    Personalized clay charms and keychains
+                    designed to become small keepsakes
+                    you can carry every day.
+
+                </p>
+
+            </div>
+
+
+        </div>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      PRICE LIST
-     ========================= -->
+     ========================================================= -->
 
 <section id="price">
 
-  <div class="container">
+    <div class="container">
 
-    <h2 class="section-title title-font">
-      Price List
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Swipe or drag left and right.
-      Click any image to enlarge.
-
-    </p>
+        <h2 class="section-title title-font">
+            Price List
+        </h2>
 
 
-    <div
-      class="gallery-wrapper"
-      id="priceGallery"
+        <p class="section-subtitle">
+
+            Swipe or drag left and right.
+            Click any image to enlarge.
+
+        </p>
+
+
+        <div
+            class="gallery-wrapper"
+            id="priceGallery"
+        >
+
+            <div class="gallery">
+
+
+                <img
+                    src="PRICE_LIST_1.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 1"
+                >
+
+                <img
+                    src="PRICE_LIST_2.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 2"
+                >
+
+                <img
+                    src="PRICE_LIST_3.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 3"
+                >
+
+                <img
+                    src="PRICE_LIST_4.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 4"
+                >
+
+                <img
+                    src="PRICE_LIST_5.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 5"
+                >
+
+                <img
+                    src="PRICE_LIST_6.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 6"
+                >
+
+
+                <!-- DUPLICATES FOR LOOP -->
+
+                <img
+                    src="PRICE_LIST_1.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 1"
+                >
+
+                <img
+                    src="PRICE_LIST_2.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 2"
+                >
+
+                <img
+                    src="PRICE_LIST_3.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 3"
+                >
+
+                <img
+                    src="PRICE_LIST_4.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 4"
+                >
+
+                <img
+                    src="PRICE_LIST_5.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 5"
+                >
+
+                <img
+                    src="PRICE_LIST_6.png"
+                    data-price-image="true"
+                    onclick="openImage(this.src)"
+                    alt="Price List 6"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p
+        style="
+            text-align:center;
+            margin-top:20px;
+            color:#666;
+            font-size:16px;
+            line-height:1.6;
+        "
     >
 
-      <div class="gallery">
-
-
-        <!-- ORIGINAL -->
-
-        <img
-          src="PRICE_LIST_1.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_2.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_3.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_4.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_5.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_6.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-
-        <!-- DUPLICATES FOR LOOP -->
-
-        <img
-          src="PRICE_LIST_1.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_2.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_3.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_4.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_5.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-        <img
-          src="PRICE_LIST_6.png"
-          data-price-image="true"
-          onclick="openImage(this.src)"
-        >
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <p
-    style="
-      text-align:center;
-      margin-top:20px;
-      color:#666;
-      font-size:16px;
-      line-height:1.6;
-    "
-  >
-
-    Prices may increase depending on the level
-    of detail requested. More detailed designs
-    may have additional charges.
-
-  </p>
-
-</section>
-
-
-<!-- =========================
-     PRE ORDER
-     ========================= -->
-
-<section
-  id="preorder"
-  class="black-section"
->
-
-  <div class="container">
-
-    <h2 class="section-title title-font">
-      How To Pre-Order?
-    </h2>
-
-
-    <div class="step">
-
-      <h3>1. Message Us</h3>
-
-      Message us on Facebook, TikTok,
-      or Instagram.
-
-    </div>
-
-
-    <div class="step">
-
-      <h3>
-        2. Send Your Reference Photo
-      </h3>
-
-      Send your reference or inspiration
-      photo and we will provide the price
-      for your personalized figure.
-
-    </div>
-
-
-    <div class="step">
-
-      <h3>
-        3. Pay 50% Downpayment
-      </h3>
-
-      This will reserve your slot and schedule
-      the starting day of the sculpting process.
-      Please note that the reserved slot is for
-      the starting/working day of the sculpting
-      process, not the ship-out date.
-
-    </div>
-
-
-    <div class="step">
-
-      <h3>
-        4. Wait for Your Scheduled Sculpting Day
-      </h3>
-
-      Usually takes 5–7 working days.
-      We will send updates during the process.
-
-    </div>
-
-
-    <div class="step">
-
-      <h3>5. Order Completed</h3>
-
-      Pay remaining balance + shipping fee.
-
-    </div>
-
-
-    <div class="step">
-
-      <h3>6. Shipment & Delivery</h3>
-
-      Your figure will be shipped to you.
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SHIPPING
-     ========================= -->
-
-<section
-  id="shipping"
-  style="background:#f3f3f3;"
->
-
-  <div class="container">
-
-    <h2 class="section-title title-font">
-      Shipping Note
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Important information about
-      shipping and delivery.
+        Prices may increase depending on the level
+        of detail requested. More detailed designs
+        may have additional charges.
 
     </p>
 
-
-    <div class="shipping-grid">
-
-
-      <div class="shipping-card">
-
-        <img
-          src="SHIP_1.png"
-          onclick="openImage(this.src)"
-        >
-
-        <p>
-          Shipping fee is shouldered by the customer.
-        </p>
-
-      </div>
+</section>
 
 
-      <div class="shipping-card">
+<!-- =========================================================
+     PRE ORDER
+     ========================================================= -->
 
-        <img
-          src="SHIP_2.png"
-          onclick="openImage(this.src)"
-        >
+<section
+    id="preorder"
+    class="black-section"
+>
 
-        <p>
-          Shipping cost depends on location
-          and distance.
-        </p>
+    <div class="container">
 
-      </div>
+        <h2 class="section-title title-font">
+            How To Pre-Order?
+        </h2>
 
 
-      <div class="shipping-card">
+        <div class="step">
 
-        <img
-          src="SHIP_3.png"
-          onclick="openImage(this.src)"
-        >
+            <h3>1. Message Us</h3>
 
-        <p>
-          Final shipping fee will be advised
-          day before shipment.
-        </p>
+            Message us on Facebook, TikTok,
+            or Instagram.
 
-      </div>
+        </div>
 
+
+        <div class="step">
+
+            <h3>
+                2. Send Your Reference Photo
+            </h3>
+
+            Send your reference or inspiration
+            photo and we will provide the price
+            for your personalized figure.
+
+        </div>
+
+
+        <div class="step">
+
+            <h3>
+                3. Pay 50% Downpayment
+            </h3>
+
+            This will reserve your slot and schedule
+            the starting day of the sculpting process.
+            Please note that the reserved slot is for
+            the starting/working day of the sculpting
+            process, not the ship-out date.
+
+        </div>
+
+
+        <div class="step">
+
+            <h3>
+                4. Wait for Your Scheduled Sculpting Day
+            </h3>
+
+            Usually takes 5–7 working days.
+            We will send updates during the process.
+
+        </div>
+
+
+        <div class="step">
+
+            <h3>5. Order Completed</h3>
+
+            Pay remaining balance + shipping fee.
+
+        </div>
+
+
+        <div class="step">
+
+            <h3>6. Shipment & Delivery</h3>
+
+            Your figure will be shipped to you.
+
+        </div>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
-     FAQS
-     ========================= -->
+<!-- =========================================================
+     SHIPPING
+     ========================================================= -->
+
+<section
+    id="shipping"
+    style="background:#f3f3f3;"
+>
+
+    <div class="container">
+
+        <h2 class="section-title title-font">
+            Shipping Note
+        </h2>
+
+
+        <p class="section-subtitle">
+
+            Important information about
+            shipping and delivery.
+
+        </p>
+
+
+        <div class="shipping-grid">
+
+
+            <div class="shipping-card">
+
+                <img
+                    src="SHIP_1.png"
+                    onclick="openImage(this.src)"
+                    alt="Shipping Information"
+                >
+
+                <p>
+                    Shipping fee is shouldered by the customer.
+                </p>
+
+            </div>
+
+
+            <div class="shipping-card">
+
+                <img
+                    src="SHIP_2.png"
+                    onclick="openImage(this.src)"
+                    alt="Shipping Cost"
+                >
+
+                <p>
+                    Shipping cost depends on location
+                    and distance.
+                </p>
+
+            </div>
+
+
+            <div class="shipping-card">
+
+                <img
+                    src="SHIP_3.png"
+                    onclick="openImage(this.src)"
+                    alt="Final Shipping Fee"
+                >
+
+                <p>
+                    Final shipping fee will be advised
+                    day before shipment.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+     ========================================================= -->
 
 <section id="faqs">
 
-  <div class="container">
+    <div class="container">
 
-    <h2 class="section-title title-font">
-      Frequently Asked Questions
-    </h2>
-
-
-    <div class="faq-container">
+        <h2 class="section-title title-font">
+            Frequently Asked Questions
+        </h2>
 
 
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          1. What is My Little Form?
-
-          <span>+</span>
-
-        </button>
+        <div class="faq-container">
 
 
-        <div class="faq-answer">
+            <div class="faq-item">
 
-          <p>
+                <button class="faq-question">
 
-            My Little Form creates personalized
-            figures and charms based on your chosen
-            design, reference photo, or idea.
-            Each item is handmade and customized
-            according to your request.
+                    1. What is My Little Form?
 
-          </p>
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        My Little Form creates personalized
+                        figures and charms based on your chosen
+                        design, reference photo, or idea.
+                        Each item is handmade and customized
+                        according to your request.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    2. What products do you offer?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        • Personalized figures <br>
+                        • Graduation figure <br>
+                        • Couple figures <br>
+                        • Idol/Star/Artist figures <br>
+                        • Keychain charms
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    3. How do I place an order?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        You can message us through our social
+                        media accounts and send your reference
+                        photo, preferred design, and quantity
+                        of order. We will provide the quotation
+                        and estimated completion time.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    4. Do you require a downpayment?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. We require a 50% downpayment
+                        to confirm and reserve your slot.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    5. How long does production take?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Production usually takes around
+                        5–7 days depending on the order
+                        complexity, queue, and material
+                        availability.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    6. Do you ship internationally?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. We mainly accept orders from
+                        China, Hong Kong, Indonesia, Malaysia,
+                        Singapore, and Thailand.
+
+                        <br><br>
+
+                        If your country is not listed,
+                        feel free to message us so we can
+                        check shipping availability for
+                        your location.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    7. Can I cancel my order?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Orders cannot be cancelled once
+                        production has started because all
+                        items are personalized and handmade.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    8. Do you offer refunds or returns?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Refunds and returns are generally
+                        not accepted unless the wrong item
+                        was sent or there is a major issue
+                        with the order.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    9. What payment methods do you accept?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        We usually accept GCash, Wise,
+                        PalawanPay, and Cash.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    10. Can I order in bulk?
+
+                    <span>+</span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. We accept bulk and souvenir
+                        orders for birthdays, weddings,
+                        anniversaries, corporate giveaways,
+                        and special events.
+
+                    </p>
+
+                </div>
+
+            </div>
+
 
         </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          2. What products do you offer?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            • Personalized figures <br>
-            • Graduation figure <br>
-            • Couple figures <br>
-            • Idol/Star/Artist figures <br>
-            • Keychain charms
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          3. How do I place an order?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            You can message us through our social
-            media accounts and send your reference
-            photo, preferred design, and quantity
-            of order. We will provide the quotation
-            and estimated completion time.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          4. Do you require a downpayment?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            Yes. We require a 50% downpayment
-            to confirm and reserve your slot.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          5. How long does production take?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            Production usually takes around
-            5–7 days depending on the order
-            complexity, queue, and material
-            availability.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          6. Do you ship internationally?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            Yes. We mainly accept orders from
-            China, Hong Kong, Indonesia, Malaysia,
-            Singapore, and Thailand.
-
-            <br><br>
-
-            If your country is not listed,
-            feel free to message us so we can
-            check shipping availability for
-            your location.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          7. Can I cancel my order?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            Orders cannot be cancelled once
-            production has started because all
-            items are personalized and handmade.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          8. Do you offer refunds or returns?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            Refunds and returns are generally
-            not accepted unless the wrong item
-            was sent or there is a major issue
-            with the order.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          9. What payment methods do you accept?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            We usually accept GCash, Wise,
-            PalawanPay, and Cash.
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button class="faq-question">
-
-          10. Can I order in bulk?
-
-          <span>+</span>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-
-            Yes. We accept bulk and souvenir
-            orders for birthdays, weddings,
-            anniversaries, corporate giveaways,
-            and special events.
-
-          </p>
-
-        </div>
-
-      </div>
-
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      CONTACT
-     ========================= -->
+     ========================================================= -->
 
 <section id="contact">
 
-  <div class="container">
+    <div class="container">
 
-    <h2 class="section-title title-font">
-      Contact Us
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Location: Calamba City Laguna, Philippines
-
-    </p>
+        <h2 class="section-title title-font">
+            Contact Us
+        </h2>
 
 
-    <div class="contact-grid">
+        <p class="section-subtitle">
 
+            Location: Calamba City Laguna, Philippines
 
-      <a
-        class="contact-card"
-        target="_blank"
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=mylittleform@gmail.com"
-      >
-
-        <img
-          src="GMAIL_ICON.png"
-          class="contact-icon"
-        >
-
-        <h3 class="title-font">
-          Email
-        </h3>
-
-        <p>
-          mylittleform@gmail.com
         </p>
 
-      </a>
+
+        <div class="contact-grid">
 
 
-      <a
-        class="contact-card"
-        target="_blank"
-        href="https://www.facebook.com/people/My-Little-Form/61587764145878/"
-      >
+            <a
+                class="contact-card"
+                target="_blank"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=mylittleform@gmail.com"
+            >
 
-        <img
-          src="FB_ICON.png"
-          class="contact-icon"
-        >
+                <img
+                    src="GMAIL_ICON.png"
+                    class="contact-icon"
+                    alt="Email"
+                >
 
-        <h3 class="title-font">
-          Facebook
-        </h3>
+                <h3 class="title-font">
+                    Email
+                </h3>
 
-        <p>
-          My Little Form
-        </p>
+                <p>
+                    mylittleform@gmail.com
+                </p>
 
-      </a>
-
-
-      <a
-        class="contact-card"
-        target="_blank"
-        href="https://www.tiktok.com/@my.little.form?_r=1&_t=ZS-96BPC27JnwP"
-      >
-
-        <img
-          src="TIKTOK_ICON.png"
-          class="contact-icon"
-        >
-
-        <h3 class="title-font">
-          TikTok
-        </h3>
-
-        <p>
-          @my.little.form
-        </p>
-
-      </a>
+            </a>
 
 
-      <a
-        class="contact-card"
-        target="_blank"
-        href="https://www.instagram.com/mylittleform"
-      >
+            <a
+                class="contact-card"
+                target="_blank"
+                href="https://www.facebook.com/people/My-Little-Form/61587764145878/"
+            >
 
-        <img
-          src="IG_ICON.png"
-          class="contact-icon"
-        >
+                <img
+                    src="FB_ICON.png"
+                    class="contact-icon"
+                    alt="Facebook"
+                >
 
-        <h3 class="title-font">
-          Instagram
-        </h3>
+                <h3 class="title-font">
+                    Facebook
+                </h3>
 
-        <p>
-          @mylittleform
-        </p>
+                <p>
+                    My Little Form
+                </p>
 
-      </a>
+            </a>
 
+
+            <a
+                class="contact-card"
+                target="_blank"
+                href="https://www.tiktok.com/@my.little.form?_r=1&_t=ZS-96BPC27JnwP"
+            >
+
+                <img
+                    src="TIKTOK_ICON.png"
+                    class="contact-icon"
+                    alt="TikTok"
+                >
+
+                <h3 class="title-font">
+                    TikTok
+                </h3>
+
+                <p>
+                    @my.little.form
+                </p>
+
+            </a>
+
+
+            <a
+                class="contact-card"
+                target="_blank"
+                href="https://www.instagram.com/mylittleform"
+            >
+
+                <img
+                    src="IG_ICON.png"
+                    class="contact-icon"
+                    alt="Instagram"
+                >
+
+                <h3 class="title-font">
+                    Instagram
+                </h3>
+
+                <p>
+                    @mylittleform
+                </p>
+
+            </a>
+
+
+        </div>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      FOOTER
-     ========================= -->
+     ========================================================= -->
 
 <footer>
 
-  © 2026 My Little Form —
-  Every Little Form Tells a Story.
+    © 2026 My Little Form —
+    Every Little Form Tells a Story.
 
 </footer>
 
 
-<!-- =========================
+<!-- =========================================================
      LIGHTBOX
-     ========================= -->
+     ========================================================= -->
 
 <div
-  class="lightbox"
-  id="lightbox"
-  onclick="closeImage()"
+    class="lightbox"
+    id="lightbox"
+    onclick="closeImage()"
 >
 
 
-  <button
-    class="nav-btn left"
-    onclick="
-      event.stopPropagation();
-      changeImage(-1);
-    "
-  >
-    ❮
-  </button>
+    <button
+        class="nav-btn left"
+        onclick="
+            event.stopPropagation();
+            changeImage(-1);
+        "
+    >
+        ❮
+    </button>
 
 
-  <img id="lightbox-img">
+    <img
+        id="lightbox-img"
+        alt="Enlarged image"
+    >
 
 
-  <button
-    class="nav-btn right"
-    onclick="
-      event.stopPropagation();
-      changeImage(1);
-    "
-  >
-    ❯
-  </button>
+    <button
+        class="nav-btn right"
+        onclick="
+            event.stopPropagation();
+            changeImage(1);
+        "
+    >
+        ❯
+    </button>
 
 
 </div>
@@ -2133,136 +2378,162 @@ nav::-webkit-scrollbar{
 
 <script>
 
-
-/* =========================
+/* =========================================================
    HAMBURGER MENU
-   ========================= */
+   ========================================================= */
 
 const menuToggle =
-  document.getElementById("menuToggle");
+    document.getElementById("menuToggle");
 
 const mobileMenu =
-  document.getElementById("mobileMenu");
+    document.getElementById("mobileMenu");
 
 
 menuToggle.onclick = (event) => {
 
-  event.stopPropagation();
+    event.stopPropagation();
 
-  const isOpen =
-    mobileMenu.classList.toggle("active");
+    const isOpen =
+        mobileMenu.classList.toggle("active");
 
-  menuToggle.textContent =
-    isOpen ? "✕" : "☰";
+    menuToggle.textContent =
+        isOpen ? "✕" : "☰";
 
-  menuToggle.setAttribute(
-    "aria-expanded",
-    isOpen ? "true" : "false"
-  );
+    menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+    );
 
 };
 
 
 const mobileLinks =
-  mobileMenu.querySelectorAll("a");
+    mobileMenu.querySelectorAll("a");
 
 
 mobileLinks.forEach(link => {
 
-  link.addEventListener("click", () => {
+    link.addEventListener("click", () => {
 
-    mobileMenu.classList.remove("active");
+        mobileMenu.classList.remove("active");
 
-    menuToggle.textContent = "☰";
+        menuToggle.textContent = "☰";
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      "false"
-    );
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
 
-  });
+    });
 
 });
 
 
 document.addEventListener("click", (event) => {
 
-  if(
-    mobileMenu.classList.contains("active") &&
-    !mobileMenu.contains(event.target) &&
-    !menuToggle.contains(event.target)
-  ){
+    if(
+        mobileMenu.classList.contains("active") &&
+        !mobileMenu.contains(event.target) &&
+        !menuToggle.contains(event.target)
+    ){
 
-    mobileMenu.classList.remove("active");
+        mobileMenu.classList.remove("active");
 
-    menuToggle.textContent = "☰";
+        menuToggle.textContent = "☰";
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      "false"
-    );
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
 
-  }
+    }
 
 });
 
 
-/* =========================
+/* =========================================================
    DARK MODE
-   ========================= */
+   ========================================================= */
 
 const logo =
-  document.getElementById("logo-mark");
+    document.getElementById("logo-mark");
 
 const darkToggle =
-  document.getElementById("darkToggle");
+    document.getElementById("darkToggle");
 
 
 function setDarkMode(){
 
-  const isDark =
-    document.body.classList.contains("dark-mode");
+    const isDark =
+        document.body.classList.contains("dark-mode");
 
 
-  logo.src = isDark
-    ? "My Little Form LOGO MARK_WHITE.png"
-    : "My Little Form LOGO MARK.png";
+    logo.src = isDark
+        ? "My Little Form LOGO MARK_WHITE.png"
+        : "My Little Form LOGO MARK.png";
 
 
-  darkToggle.innerHTML =
-    isDark
-      ? "☀️ <span>Light Mode</span>"
-      : "🌙 <span>Dark Mode</span>";
+    darkToggle.innerHTML =
+        isDark
+            ? "☀️ <span>Light Mode</span>"
+            : "🌙 <span>Dark Mode</span>";
 
-  darkToggle.setAttribute(
-    "aria-label",
-    isDark ? "Switch to light mode" : "Switch to dark mode"
-  );
+
+    darkToggle.setAttribute(
+        "aria-label",
+        isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+    );
 
 }
 
 
 darkToggle.onclick = () => {
 
-  document.body.classList.toggle("dark-mode");
+    document.body.classList.toggle("dark-mode");
 
-  setDarkMode();
+    setDarkMode();
 
 };
 
 
-/* =========================
+/* =========================================================
+   ABOUT US IMAGE HOVER
+   ========================================================= */
+
+const aboutImage =
+    document.getElementById("aboutImage");
+
+if(aboutImage){
+
+    aboutImage.addEventListener("mouseenter", () => {
+
+        aboutImage.src = "MLF_ABOUT_US_C.png";
+
+    });
+
+
+    aboutImage.addEventListener("mouseleave", () => {
+
+        aboutImage.src = "MLF_ABOUT_US.jpg";
+
+    });
+
+}
+
+
+/* =========================================================
    PRICE LIST CAROUSEL
-   ========================= */
+   ========================================================= */
 
 const priceGalleryWrapper =
-  document.getElementById("priceGallery");
+    document.getElementById("priceGallery");
 
 const priceGallery =
-  priceGalleryWrapper
-    ? priceGalleryWrapper.querySelector(".gallery")
-    : null;
-
+    priceGalleryWrapper
+        ? priceGalleryWrapper.querySelector(".gallery")
+        : null;
 
 const carouselSpeed = 0.5;
 
@@ -2281,19 +2552,19 @@ let startX = 0;
 let startOffset = 0;
 
 
-/* NORMALIZE POSITION */
+/* NORMALIZE */
 
 function normalizeCarouselOffset(){
 
-  if(loopWidth > 0){
+    if(loopWidth > 0){
 
-    carouselOffset =
-      (
-        carouselOffset % loopWidth
-        + loopWidth
-      ) % loopWidth;
+        carouselOffset =
+            (
+                carouselOffset % loopWidth
+                + loopWidth
+            ) % loopWidth;
 
-  }
+    }
 
 }
 
@@ -2302,12 +2573,12 @@ function normalizeCarouselOffset(){
 
 function renderCarousel(){
 
-  if(priceGallery){
+    if(priceGallery){
 
-    priceGallery.style.transform =
-      `translate3d(${-carouselOffset}px,0,0)`;
+        priceGallery.style.transform =
+            `translate3d(${-carouselOffset}px,0,0)`;
 
-  }
+    }
 
 }
 
@@ -2316,14 +2587,14 @@ function renderCarousel(){
 
 function refreshCarouselSize(){
 
-  if(!priceGallery) return;
+    if(!priceGallery) return;
 
-  loopWidth =
-    priceGallery.scrollWidth / 2;
+    loopWidth =
+        priceGallery.scrollWidth / 2;
 
-  normalizeCarouselOffset();
+    normalizeCarouselOffset();
 
-  renderCarousel();
+    renderCarousel();
 
 }
 
@@ -2332,41 +2603,41 @@ function refreshCarouselSize(){
 
 function autoSlide(timestamp){
 
-  if(!lastFrameTime){
+    if(!lastFrameTime){
+
+        lastFrameTime = timestamp;
+
+    }
+
+
+    const elapsed =
+        Math.min(
+            timestamp - lastFrameTime,
+            50
+        );
+
 
     lastFrameTime = timestamp;
 
-  }
+
+    if(
+        !isDragging &&
+        loopWidth > 0
+    ){
+
+        carouselOffset +=
+            carouselSpeed *
+            (elapsed / 16.67);
 
 
-  const elapsed =
-    Math.min(
-      timestamp - lastFrameTime,
-      50
-    );
+        normalizeCarouselOffset();
+
+        renderCarousel();
+
+    }
 
 
-  lastFrameTime = timestamp;
-
-
-  if(
-    !isDragging &&
-    loopWidth > 0
-  ){
-
-    carouselOffset +=
-      carouselSpeed *
-      (elapsed / 16.67);
-
-
-    normalizeCarouselOffset();
-
-    renderCarousel();
-
-  }
-
-
-  requestAnimationFrame(autoSlide);
+    requestAnimationFrame(autoSlide);
 
 }
 
@@ -2375,274 +2646,263 @@ function autoSlide(timestamp){
 
 function startCarousel(){
 
-  if(
-    !priceGalleryWrapper ||
-    !priceGallery
-  ){
+    if(
+        !priceGalleryWrapper ||
+        !priceGallery
+    ){
 
-    return;
+        return;
 
-  }
+    }
 
 
-  refreshCarouselSize();
+    refreshCarouselSize();
 
-  lastFrameTime =
-    performance.now();
+    lastFrameTime =
+        performance.now();
 
-  requestAnimationFrame(autoSlide);
+    requestAnimationFrame(autoSlide);
 
 }
 
 
 if(
-  document.readyState === "complete"
+    document.readyState === "complete"
 ){
 
-  startCarousel();
+    startCarousel();
 
 }else{
 
-  window.addEventListener(
-    "load",
-    startCarousel,
-    {once:true}
-  );
+    window.addEventListener(
+        "load",
+        startCarousel,
+        {once:true}
+    );
 
 }
 
 
 window.addEventListener(
-  "resize",
-  refreshCarouselSize
+    "resize",
+    refreshCarouselSize
 );
 
 
 window.addEventListener(
-  "orientationchange",
-  () => {
+    "orientationchange",
+    () => {
 
-    setTimeout(
-      refreshCarouselSize,
-      150
-    );
+        setTimeout(
+            refreshCarouselSize,
+            150
+        );
 
-  }
+    }
 );
 
 
-/* =========================
+/* =========================================================
    CAROUSEL DRAG / SWIPE
-   ========================= */
+   ========================================================= */
 
 if(priceGalleryWrapper){
 
-  priceGalleryWrapper.addEventListener(
-    "pointerdown",
-    (event) => {
+    priceGalleryWrapper.addEventListener(
+        "pointerdown",
+        (event) => {
 
-      if(
-        event.pointerType === "mouse" &&
-        event.button !== 0
-      ){
+            if(
+                event.pointerType === "mouse" &&
+                event.button !== 0
+            ){
 
-        return;
+                return;
 
-      }
-
-
-      refreshCarouselSize();
+            }
 
 
-      isDragging = true;
-
-      hasDragged = false;
-
-      startX = event.clientX;
-
-      startOffset = carouselOffset;
-
-      lastFrameTime =
-        performance.now();
+            refreshCarouselSize();
 
 
-      priceGalleryWrapper.classList.add(
-        "dragging"
-      );
+            isDragging = true;
+
+            hasDragged = false;
+
+            startX = event.clientX;
+
+            startOffset = carouselOffset;
+
+            lastFrameTime =
+                performance.now();
 
 
-      event.preventDefault();
-
-    },
-    {passive:false}
-  );
+            priceGalleryWrapper.classList.add(
+                "dragging"
+            );
 
 
-  priceGalleryWrapper.addEventListener(
-    "pointermove",
-    (event) => {
+            event.preventDefault();
 
-      if(!isDragging) return;
-
-
-      const distance =
-        event.clientX - startX;
-
-
-      if(
-        Math.abs(distance) > 8
-      ){
-
-        hasDragged = true;
-
-      }
-
-
-      if(hasDragged){
-
-        carouselOffset =
-          startOffset - distance;
-
-
-        normalizeCarouselOffset();
-
-        renderCarousel();
-
-        event.preventDefault();
-
-      }
-
-    },
-    {passive:false}
-  );
-
-
-  function endDrag(){
-
-    if(!isDragging) return;
-
-
-    isDragging = false;
-
-    lastFrameTime =
-      performance.now();
-
-
-    priceGalleryWrapper.classList.remove(
-      "dragging"
+        },
+        {passive:false}
     );
 
-  }
+
+    priceGalleryWrapper.addEventListener(
+        "pointermove",
+        (event) => {
+
+            if(!isDragging) return;
 
 
-  priceGalleryWrapper.addEventListener(
-    "pointerup",
-    endDrag
-  );
+            const distance =
+                event.clientX - startX;
 
 
-  priceGalleryWrapper.addEventListener(
-    "pointercancel",
-    endDrag
-  );
+            if(
+                Math.abs(distance) > 8
+            ){
+
+                hasDragged = true;
+
+            }
 
 
-  /*
-     Prevent image click after dragging
-  */
+            if(hasDragged){
 
-  priceGalleryWrapper.addEventListener(
-    "click",
-    (event) => {
+                carouselOffset =
+                    startOffset - distance;
 
-      if(hasDragged){
+                normalizeCarouselOffset();
 
-        event.preventDefault();
+                renderCarousel();
 
-        event.stopPropagation();
+                event.preventDefault();
 
-        hasDragged = false;
+            }
 
-      }
+        },
+        {passive:false}
+    );
 
-    },
-    true
-  );
+
+    function endDrag(){
+
+        if(!isDragging) return;
+
+
+        isDragging = false;
+
+        lastFrameTime =
+            performance.now();
+
+
+        priceGalleryWrapper.classList.remove(
+            "dragging"
+        );
+
+    }
+
+
+    priceGalleryWrapper.addEventListener(
+        "pointerup",
+        endDrag
+    );
+
+
+    priceGalleryWrapper.addEventListener(
+        "pointercancel",
+        endDrag
+    );
+
+
+    priceGalleryWrapper.addEventListener(
+        "click",
+        (event) => {
+
+            if(hasDragged){
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                hasDragged = false;
+
+            }
+
+        },
+        true
+    );
 
 }
 
 
-/* =========================
+/* =========================================================
    LIGHTBOX
-   ========================= */
+   ========================================================= */
 
 let images = [];
 
 let currentIndex = 0;
 
 
-/*
-   Only include:
-   - Price List images
-   - Shipping images
-*/
-
 function buildImageList(){
 
-  const imageElements =
-    document.querySelectorAll(
-      "#priceGallery img, .shipping-card img"
-    );
+    const imageElements =
+        document.querySelectorAll(
+            "#priceGallery img, .shipping-card img"
+        );
 
 
-  images = [
-    ...new Set(
-      Array.from(imageElements)
-        .map(img => img.src)
-        .filter(src => src)
-    )
-  ];
+    images = [
+        ...new Set(
+            Array.from(imageElements)
+                .map(img => img.src)
+                .filter(src => src)
+        )
+    ];
 
 }
 
 
 window.addEventListener(
-  "load",
-  buildImageList
+    "load",
+    buildImageList
 );
 
 
-/* OPEN IMAGE */
+/* OPEN */
 
 function openImage(src){
 
-  if(!images.length){
+    if(!images.length){
 
-    buildImageList();
+        buildImageList();
 
-  }
-
-
-  currentIndex =
-    images.indexOf(src);
+    }
 
 
-  if(currentIndex === -1){
-
-    currentIndex = 0;
-
-  }
+    currentIndex =
+        images.indexOf(src);
 
 
-  document
-    .getElementById("lightbox")
-    .classList.add("active");
+    if(currentIndex === -1){
+
+        currentIndex = 0;
+
+    }
 
 
-  document
-    .getElementById("lightbox-img")
-    .src =
-      images[currentIndex];
+    document
+        .getElementById("lightbox")
+        .classList.add("active");
+
+
+    document
+        .getElementById("lightbox-img")
+        .src =
+            images[currentIndex];
 
 }
 
@@ -2651,9 +2911,9 @@ function openImage(src){
 
 function closeImage(){
 
-  document
-    .getElementById("lightbox")
-    .classList.remove("active");
+    document
+        .getElementById("lightbox")
+        .classList.remove("active");
 
 }
 
@@ -2662,124 +2922,123 @@ function closeImage(){
 
 function changeImage(step){
 
-  if(!images.length) return;
+    if(!images.length) return;
 
 
-  currentIndex += step;
+    currentIndex += step;
 
 
-  if(currentIndex < 0){
+    if(currentIndex < 0){
 
-    currentIndex =
-      images.length - 1;
+        currentIndex =
+            images.length - 1;
 
-  }
-
-
-  if(
-    currentIndex >= images.length
-  ){
-
-    currentIndex = 0;
-
-  }
+    }
 
 
-  document
-    .getElementById("lightbox-img")
-    .src =
-      images[currentIndex];
+    if(
+        currentIndex >= images.length
+    ){
+
+        currentIndex = 0;
+
+    }
+
+
+    document
+        .getElementById("lightbox-img")
+        .src =
+            images[currentIndex];
 
 }
 
 
-/* =========================
+/* =========================================================
    FAQ TOGGLE
-   ========================= */
+   ========================================================= */
 
 const faqItems =
-  document.querySelectorAll(".faq-item");
+    document.querySelectorAll(".faq-item");
 
 
 faqItems.forEach(item => {
 
-  const button =
-    item.querySelector(".faq-question");
+    const button =
+        item.querySelector(".faq-question");
 
 
-  button.onclick = () => {
+    button.onclick = () => {
 
-    item.classList.toggle("active");
-
-
-    const icon =
-      button.querySelector("span");
+        item.classList.toggle("active");
 
 
-    if(
-      item.classList.contains("active")
-    ){
+        const icon =
+            button.querySelector("span");
 
-      icon.textContent = "−";
 
-    }else{
+        if(
+            item.classList.contains("active")
+        ){
 
-      icon.textContent = "+";
+            icon.textContent = "−";
 
-    }
+        }else{
 
-  };
+            icon.textContent = "+";
+
+        }
+
+    };
 
 });
 
 
-/* =========================
+/* =========================================================
    KEYBOARD LIGHTBOX
-   ========================= */
+   ========================================================= */
 
 document.addEventListener(
-  "keydown",
-  (event) => {
+    "keydown",
+    (event) => {
 
-    const lightbox =
-      document.getElementById("lightbox");
+        const lightbox =
+            document.getElementById("lightbox");
 
 
-    if(
-      !lightbox.classList.contains("active")
-    ){
+        if(
+            !lightbox.classList.contains("active")
+        ){
 
-      return;
+            return;
+
+        }
+
+
+        if(event.key === "Escape"){
+
+            closeImage();
+
+        }
+
+
+        if(event.key === "ArrowLeft"){
+
+            changeImage(-1);
+
+        }
+
+
+        if(event.key === "ArrowRight"){
+
+            changeImage(1);
+
+        }
 
     }
-
-
-    if(event.key === "Escape"){
-
-      closeImage();
-
-    }
-
-
-    if(event.key === "ArrowLeft"){
-
-      changeImage(-1);
-
-    }
-
-
-    if(event.key === "ArrowRight"){
-
-      changeImage(1);
-
-    }
-
-  }
 );
 
 </script>
 
 
 </body>
-
 </html>
